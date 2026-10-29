@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Growl LaLaLa Design のロゴマーク（4枚の葉）。左上の1枚を描き、90度ずつ回して4枚にする -->
+  <defs><path id="q" d="M42.5 0.6A50 50 0 0 0 0.6 42.5H37.5Q42.5 42.5 42.5 37.5Z"/></defs>
+  <use href="#q" fill="#B0CE82"/>
+  <use href="#q" fill="#E7D42F" transform="rotate(90 50 50)"/>
+  <use href="#q" fill="#D83330" transform="rotate(180 50 50)"/>
+  <use href="#q" fill="#115A5E" transform="rotate(270 50 50)"/>
+</svg>

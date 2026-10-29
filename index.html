@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Growl LaLaLa Designのポートフォリオ。Webデザイン・実装、グラフィック、運用・改善、図解・イラスト・漫画。伝え、届けるデザインを考えます。" />
+  <meta name="theme-color" content="#f7f8f5" />
+  <title>Growl LaLaLa Design | Portfolio — HOME</title>
+  <!-- ファビコン：ロゴマーク（4枚の葉）。SVGに対応したブラウザはSVG、それ以外はPNG。iPhoneのホーム画面用は背景つき -->
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <!-- OGP：URLをLINE・メール・SNSで送った時に出るカード。画像の元ページは _src/ogp.html -->
+  <!-- og:url と og:image は公開先（GitHub Pages）のURL。相対パスだと画像が出ないサービスがあるので https:// から書く -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Growl LaLaLa Design" />
+  <meta property="og:title" content="Growl LaLaLa Design | Portfolio" />
+  <meta property="og:description" content="Growl LaLaLa Designのポートフォリオ。Webデザイン・実装、グラフィック、運用・改善、図解・イラスト・漫画。伝え、届けるデザインを考えます。" />
+  <meta property="og:url" content="https://makik-0-iwata.github.io/portfolio/" />
+  <meta property="og:image" content="https://makik-0-iwata.github.io/portfolio/assets/ogp.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script>
+    // オープニングを出すか決める
+    //  ・このブラウザで初めてTOPを開いた時だけ出す（2回目以降はリロードしても出さない）
+    //  ・「動きを減らす」設定の人には出さない
+    //  ・確認用：URLに ?opening を付けると毎回出す
+    (() => {
+      let seen = false;
+      try { seen = localStorage.getItem('glOpeningSeen') === '1'; } catch (e) {}
+      const force = new URLSearchParams(location.search).has('opening');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // has-opening＝カバーを置く／is-opening＝再生中（スクロールを止める）
+      if ((force || !seen) && !reduce) document.documentElement.classList.add('has-opening', 'is-opening');
+    })();
+  </script>
+  <link rel="stylesheet" href="./style.css?v=220" />
+  <script src="./script.js?v=99" defer></script>
+  <script src="./hula.js?v=3" defer></script>
+</head>
+<body id="top">
+  <!-- オープニング：コピーが1文字ずつ下から上がり、カバーが消えてページが出る（参考：rutbryk.jp） -->
+  <div class="opening" aria-hidden="true">
+    <p class="opening__copy">
+      <span class="opening__phrase" data-text="考える。"></span><span class="opening__phrase" data-text="つくる。"></span><span class="opening__phrase" data-text="その先へ。"></span>
+    </p>
+    <p class="opening__sub"><span>Growl LaLaLa Design — Portfolio</span></p>
+  </div>
+
+  <a class="skip-link" href="#main">本文へスキップ</a>
+  <header class="site-header">
+    <!-- ロゴを中央に置き、メニューを左右に振り分ける（参考：alpenchalet-gaschurn.de） -->
+    <div class="header-inner container-wide">
+      <nav class="desktop-nav desktop-nav--left" aria-label="メインナビゲーション（前半）">
+        <a href="#works">WORKS<span class="nav-jp">制作事例</span></a>
+        <a href="#expertise">EXPERTISE<span class="nav-jp">できること</span></a>
+      </nav>
+      <a class="brand" href="#top" aria-label="Growl LaLaLa Design ホームに戻る">
+        <img src="./assets/brand-original.png" alt="Growl LaLaLa Design" width="148" height="70" />
+      </a>
+      <nav class="desktop-nav desktop-nav--right" aria-label="メインナビゲーション（後半）">
+        <a href="#about">ABOUT<span class="nav-jp">プロフィール</span></a>
+        <a href="#contact">CONTACT<span class="nav-jp">お問い合わせ</span></a>
+      </nav>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-navigation" aria-label="メニューを開く">
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-navigation" aria-label="スマートフォン用ナビゲーション" inert>
+      <a href="#works">WORKS <span>制作事例</span></a>
+      <a href="#expertise">EXPERTISE <span>できること</span></a>
+      <a href="#about">ABOUT <span>プロフィール</span></a>
+      <a href="#contact">CONTACT <span>お問い合わせ</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO：背景に作品画像が横にスライドし続ける（参考：heartland.jp） -->
+    <div class="hero-wrap">
+      <!-- HERO背景：作品画像のタイルが3段、止まらずに流れ続ける（同じ並びを2回続けて置き、半分流れたら戻すことで切れ目なくループ） -->
+      <!-- 緑のダブルトーン用の色フィルター：明るさに応じて「深緑 #174A43 〜 淡いセージ #DFE9E1」に置き換える -->
+      <svg class="visually-hidden-svg" width="0" height="0" aria-hidden="true" focusable="false">
+        <filter id="green-duotone" color-interpolation-filters="sRGB">
+          <!-- 各行：(明るい色−暗い色)×明るさの係数(0.2126/0.7152/0.0722) と、暗い色の値 -->
+          <feColorMatrix type="matrix" values="
+            0.1669 0.5614 0.0567 0 0.090
+            0.1327 0.4463 0.0451 0 0.290
+            0.1316 0.4427 0.0447 0 0.263
+            0      0      0      1 0" />
+        </filter>
+      </svg>
+      <div class="hero-marquee" aria-hidden="true">
+        <div class="hero-marquee__row hero-marquee__row--1"><div class="hero-marquee__track"><img src="./assets/hero-tiles/07-golf-school-lp-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/10-salon-logo-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/01-camp-map-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/06-banners-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/09-seminar-lp-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/11-vip-card-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/04-eikaiwa-logo-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/07-golf-school-lp-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/10-salon-logo-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/01-camp-map-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/06-banners-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/09-seminar-lp-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/11-vip-card-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/04-eikaiwa-logo-2.jpg" alt="" width="720" height="540" decoding="async" /></div></div>
+        <div class="hero-marquee__row hero-marquee__row--2"><div class="hero-marquee__track"><img src="./assets/hero-tiles/08-insole-lp-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/05-guitar-logo-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/12-golf-floormap-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/13-halloween-lp-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/02-own-site-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/10-salon-logo-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/01-camp-map-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/08-insole-lp-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/05-guitar-logo-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/12-golf-floormap-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/13-halloween-lp-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/02-own-site-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/10-salon-logo-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/01-camp-map-1.jpg" alt="" width="720" height="540" decoding="async" /></div></div>
+        <div class="hero-marquee__row hero-marquee__row--3"><div class="hero-marquee__track"><img src="./assets/hero-tiles/09-seminar-lp-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/11-vip-card-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/03-app-wireframe-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/14-illust-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/08-insole-lp-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/05-guitar-logo-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/12-golf-floormap-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/09-seminar-lp-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/11-vip-card-1.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/03-app-wireframe-3.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/14-illust-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/08-insole-lp-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/05-guitar-logo-2.jpg" alt="" width="720" height="540" decoding="async" /><img src="./assets/hero-tiles/12-golf-floormap-1.jpg" alt="" width="720" height="540" decoding="async" /></div></div>
+      </div>
+    <section class="hero container-wide" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="hero-concept">考える。つくる。その先へ。</p>
+        <h1 id="hero-title">伝え 届ける<br /><em><span class="hero-de">デ</span>ザイン<span class="hero-period">。</span></em></h1>
+        <p class="hero-intro">誰に、何を、どう届けるか。<br />想いや情報を整理して、伝わるかたちを探します。</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#works">制作事例を見る <span class="arrow arrow--tri" aria-hidden="true"></span></a>
+          <a class="button button-outline" href="#about">わたしについて <span class="arrow arrow--tri" aria-hidden="true"></span></a>
+        </div>
+      </div>
+
+    </section>
+    </div>
+
+    <section class="works-section section" id="works" aria-labelledby="works-title">
+      <div class="container-wide">
+        <div class="section-heading works-heading">
+          <div>
+            <p class="section-label">WORKS</p>
+            <h2 id="works-title">制作事例</h2>
+          </div>
+        </div>
+
+        <div class="works-toolbar" aria-label="制作事例の表示カテゴリー">
+          <div class="filter-list" role="group" aria-label="作品をカテゴリーで絞り込む">
+            <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">ALL <span>すべて</span></button>
+            <!-- 分類は「できること」の4分野とそろえる（並び順・日本語も同じ） -->
+            <button type="button" class="filter-button" data-filter="web" aria-pressed="false">WEB <span>Webデザイン・実装</span></button>
+            <button type="button" class="filter-button" data-filter="graphic" aria-pressed="false">GRAPHIC <span>グラフィック</span></button>
+            <button type="button" class="filter-button" data-filter="operation" aria-pressed="false">OPERATION <span>運用・改善</span></button>
+            <button type="button" class="filter-button" data-filter="illustration" aria-pressed="false">ILLUSTRATION <span>図解・イラスト・漫画</span></button>
+          </div>
+          <p class="works-count" id="works-count" role="status" aria-live="polite">24 PROJECTS</p>
+        </div>
+
+        <!-- WEB・OPERATIONを選んだ時だけ、一覧の上に出す案内（data-note-for の分類と同じ時に表示） -->
+        <p class="works-empty works-note" data-note-for="web" hidden>各業種向けのテンプレートもご用意しております。<br />お問い合わせからお気軽にご相談ください。</p>
+        <p class="works-empty works-note" data-note-for="operation" hidden>詳しくはお問い合わせからお気軽にご相談ください。</p>
+        <div class="works-grid" id="works-grid">
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="seminar" aria-label="オンラインセミナーのLP制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/seminar-3.jpg" width="1600" height="1047" alt="LP全体をスマートフォン画面と並べたイメージ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>オンラインセミナーのLP制作</h3><p>LP制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="insole" aria-label="医療品（インソール）のLP制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/insole-1.png" width="1600" height="1066" alt="インソールのLPをノートパソコンとスマートフォンに表示したイメージ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>医療品（インソール）のLP制作</h3><p>LP制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="golflp" aria-label="ゴルフスクールのLP制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/golflp-1.png" width="1600" height="1066" alt="ゴルフスクールのLPをノートパソコンとスマートフォンに表示したイメージ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>ゴルフスクールのLP制作</h3><p>LP制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="ramen" aria-label="飲食店の求人LP制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/ramen-a.jpg" width="918" height="1623" alt="ラーメン店の求人LPのファーストビュー（Aパターン）。赤い背景に「月収30万超え」の大きな文字と、ラーメンの写真" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>飲食店の求人LP制作</h3><p>LP制作・WordPress</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="illustration">
+            <button type="button" class="work-card__action" data-project="manga" aria-label="EC業務の「なんで？」Instagram漫画の作品概要を見る">
+              <div class="work-art work-art--manga">
+                <img src="./assets/insta-manga-02.jpg" width="1080" height="1350" alt="Instagram漫画「EC業務の『なんで？』」第2話・送料表示編の表紙。「送料を書いていないだけで、10人に4人が離脱する？」という見出しと、パソコンの前で考え込む女性のイラスト" loading="lazy" />
+              </div>
+              <div class="work-meta"><div><h3>EC業務の「なんで？」Instagram漫画</h3><p>SNS発信・AI活用</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="operation">
+            <button type="button" class="work-card__action" data-project="analysis" aria-label="イベントLPのマーケティング分析の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/analysis-1.jpg" width="1600" height="900" alt="ハロウィンイベントのマーケティング分析資料の表紙" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>イベントLPのマーケティング分析</h3><p>分析・改善提案</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="guitar" aria-label="ギター教室のHP制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/guitar-hp.png" width="1621" height="1024" alt="益田ギターアカデミーのホームページ。トップ・今日の一曲・受講生募集・講師紹介・お問い合わせの5ページを並べたデザイン" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>ギター教室のHP制作</h3><p>HP制作・WordPress</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="guitarlogo" aria-label="ギター教室のロゴ制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/guitarlogo-1.jpg" width="1600" height="1200" alt="ギターのシルエットと猫を組み合わせたギター教室のロゴ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>ギター教室のロゴ制作</h3><p>ロゴ制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="english" aria-label="オンライン英会話スクールのロゴ制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/english-1.jpg" width="1600" height="1200" alt="地球儀とチャットマークを組み合わせたオンライン英会話スクールのロゴ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>オンライン英会話スクールのロゴ制作</h3><p>ロゴ制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="mirror" aria-label="ヘアサロンのロゴ制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/mirror-1.jpg" width="1596" height="1600" alt="ヘアサロン「Mirror」のロゴを店舗の看板に入れたイメージ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>ヘアサロンのロゴ制作</h3><p>ロゴ制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="flyer" aria-label="チラシ制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/flyer-1.jpg" width="1600" height="1200" alt="ヘアサロン「Mirror」のオープン告知チラシの表と裏。表は「NEW OPEN」の文字とモデル写真、裏はリラクゼーションの流れとサロンメニュー" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>チラシ制作</h3><p>チラシ制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="meishi" aria-label="名刺制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/meishi-1.jpg" width="1600" height="1066" alt="ヘアサロン「Mirror」の名刺。銀色の面にMのロゴマーク、白い面に地図と店舗情報" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>名刺制作</h3><p>名刺制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="seminarbanner" aria-label="セミナー募集バナー制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/seminar-banner-1.jpg" width="591" height="493" alt="競売不動産入門セミナーの募集バナー。青い背景に「競売不動産入門セミナー」の文字と講師の写真" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>セミナー募集バナー制作</h3><p>バナー制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="webseminarbanner" aria-label="Webデザイン講座の集客バナー制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/webseminar-banner-1.jpg" width="1600" height="900" alt="イラストを使ったサイズ違い3パターンのバナー。「副業Webデザイン 5日間チャレンジプログラム」の文字" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>Webデザイン講座の集客バナー制作</h3><p>バナー制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="icebanner" aria-label="物販バナー制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/ice-banner.jpg" width="593" height="490" alt="アイスの物販バナー。金粉がかかったチョコレートアイスの写真に「贅沢ごほうびアイス」「期間限定」の文字" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>物販バナー制作</h3><p>バナー制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="recruitbanner" aria-label="求人バナー制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/recruit-banner-1.jpg" width="1080" height="1080" alt="介護職の求人バナー。車いすの女性に寄り添うスタッフの写真に「週1日1h〜OK」「最大時給1,750円」などの文字" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>求人バナー制作</h3><p>バナー制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="vip" aria-label="ヘアサロンのVIPカード制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/vip-1.jpg" width="1600" height="900" alt="手に持ったヘアサロンの黒いVIPカード" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>ヘアサロンのVIPカード制作</h3><p>ショップカード</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="web">
+            <button type="button" class="work-card__action" data-project="wireframe" aria-label="アプリのワイヤーフレーム作成の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/wireframe-3.png" width="1600" height="1154" alt="画面遷移をまとめたFigmaのワイヤーフレーム" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>アプリのワイヤーフレーム作成</h3><p>ワイヤーフレーム</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="illustration">
+            <button type="button" class="work-card__action" data-project="illust" aria-label="イラスト（お仕事以外）の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/illust-3.png" width="1440" height="1600" alt="キャラクターのイラスト" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>イラスト（お仕事以外）</h3><p>イラスト</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="illustration">
+            <button type="button" class="work-card__action" data-project="character" aria-label="キャラクター作成（お仕事以外）の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/character-1.png" width="731" height="1600" alt="オリジナルキャラクターの全身イラスト。青い髪ととがった耳、紺色のマントに白いブラウスとグレーのロングスカート" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>キャラクター作成（お仕事以外）</h3><p>キャラクターデザイン</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="golfmap" aria-label="室内ゴルフ場フロアマップの作品概要を見る">
+              <div class="work-art"><img src="./assets/works/golfmap-3.jpg" width="1132" height="1600" alt="1階と2階をカラーで塗り分けたフロアマップ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>室内ゴルフ場フロアマップ</h3><p>フロアマップ</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="camp" aria-label="キャンプ場のマップ制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/camp-2.png" width="1600" height="1140" alt="RVパークの区画を、木や車のイラストとあわせて描いた案内マップ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>キャンプ場のマップ制作</h3><p>マップ制作</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="mirrormap" aria-label="マップ制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/mirror-map.jpg" width="536" height="420" alt="ヘアサロン「Mirror」の案内マップ。新宿駅から店舗までの道と、目印になる建物を紫の濃淡で描いた地図" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>マップ制作</h3><p>案内マップ</p></div></div>
+            </button>
+          </article>
+
+          <article class="work-card" data-category="graphic">
+            <button type="button" class="work-card__action" data-project="ownsite" aria-label="自社のサイト・ロゴ制作の作品概要を見る">
+              <div class="work-art"><img src="./assets/works/ownsite-1.png" width="1600" height="529" alt="Growl LaLaLa Design のロゴ" loading="lazy" /></div>
+              <div class="work-meta"><div><h3>自社のサイト・ロゴ制作</h3><p>サイト・ロゴ制作</p></div></div>
+            </button>
+          </article>
+        </div>
+        <!-- 最初は数枚だけ出し、残りはこのボタンで開く（枚数は script.js の applyFilter で決める） -->
+        <div class="works-more" hidden><button type="button" class="button button-outline works-more__button" id="works-more-button">もっと見る <span class="works-more__count"></span></button></div>
+        <!-- 絞り込んだ分類に作品がない時だけ出す（運用・改善など） -->
+        <p class="works-empty" id="works-empty" hidden>この分野の事例は、守秘義務のため個別にお見せしています。<br />お問い合わせからお気軽にご相談ください。</p>
+      </div>
+    </section>
+
+    <section class="expertise-section section" id="expertise" aria-labelledby="expertise-title">
+      <div class="container-wide">
+        <div class="expertise-intro"><div><p class="section-label">EXPERTISE</p><h2 id="expertise-title">できること</h2></div></div>
+        <!-- タイトル下の帯（制作事例の絞り込みボタンの帯と同じ、上下の線で囲む） -->
+        <div class="section-bar"><p class="section-bar__text expertise-lead">媒体に合わせて、必要な表現を選ぶ。<span class="expertise-lead__en" lang="en">THE RIGHT EXPRESSION FOR EACH MEDIUM</span></p></div>
+        <!-- できること：4分野＝ロゴの4枚の葉。2×2に並べ、十字の真ん中でロゴマークになる -->
+        <div class="ability">
+          <ul class="ability-grid">
+            <li class="ability-card">
+              <p class="ability-card__no">01</p>
+              <h3 class="ability-card__title"><span class="ability-card__ja">Webデザイン・実装</span><span class="ability-card__en" lang="en">Web &amp; Digital</span></h3>
+              <p class="ability-card__lead">設計からデザイン、コーディングまで。</p>
+              <p class="ability-card__items"><span>Webサイト・LP・バナー・UI設計・コーディング</span></p>
+              <div class="ability-card__tools"><span class="ability-card__tools-label">使用ツール</span><ul class="tool-line"><li>Figma</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>WordPress</li><li>STUDIO</li></ul></div>
+              <!-- 十字の真ん中のロゴマーク（1枚目のカードの右下の角＝十字の交わる所に置く）。カードにホバーすると、その分野の葉だけが前に出る -->
+              <svg class="ability-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <use href="#mark-quarter" fill="var(--mark-1)" />
+                <use href="#mark-quarter" fill="var(--mark-2)" transform="rotate(90 50 50)" />
+                <use href="#mark-quarter" fill="var(--mark-4)" transform="rotate(270 50 50)" />
+                <use href="#mark-quarter" fill="var(--mark-3)" transform="rotate(180 50 50)" />
+              </svg>
+            </li>
+            <li class="ability-card">
+              <p class="ability-card__no">02</p>
+              <h3 class="ability-card__title"><span class="ability-card__ja">グラフィック</span><span class="ability-card__en" lang="en">Graphic &amp; Branding</span></h3>
+              <p class="ability-card__lead">お店や事業の「顔」になるものを丁寧に。</p>
+              <p class="ability-card__items"><span>ロゴ・名刺・ショップカード・チラシ・販促物・印刷物</span></p>
+              <div class="ability-card__tools"><span class="ability-card__tools-label">使用ツール</span><ul class="tool-line"><li>Illustrator</li><li>Photoshop</li></ul></div>
+            </li>
+            <li class="ability-card">
+              <p class="ability-card__no">03</p>
+              <h3 class="ability-card__title"><span class="ability-card__ja">運用・改善</span><span class="ability-card__en" lang="en">Operation &amp; Growth</span></h3>
+              <p class="ability-card__lead">公開した後も、数字を見ながら育てていく。</p>
+              <p class="ability-card__items"><span>EC運用・アクセス解析・データ分析・改善の提案</span></p>
+              <div class="ability-card__tools"><span class="ability-card__tools-label">使用ツール</span><ul class="tool-line"><li>GA4</li><li>GTM</li><li>Microsoft Clarity</li><li>Search Console</li><li>Excel</li><li>Google Sheets</li></ul></div>
+            </li>
+            <li class="ability-card">
+              <p class="ability-card__no">04</p>
+              <h3 class="ability-card__title"><span class="ability-card__ja">図解・イラスト・漫画</span><span class="ability-card__en" lang="en">Illustration &amp; Visual</span></h3>
+              <p class="ability-card__lead">込み入った情報を、わかりやすく。</p>
+              <p class="ability-card__items"><span>施設マップ・フロアマップ・図解・イラスト・漫画</span></p>
+              <div class="ability-card__tools"><span class="ability-card__tools-label">使用ツール</span><ul class="tool-line"><li>Illustrator</li><li>Photoshop</li></ul></div>
+            </li>
+          </ul>
+        </div>
+        <!-- 分野をまたぐもの：AI活用と資格 -->
+        <dl class="ability-extra">
+          <div class="ability-extra__row"><dt lang="en">AI</dt><dd><ul class="tool-line"><li>Claude</li><li>ChatGPT</li><li>Gemini</li></ul></dd></div>
+          <div class="ability-extra__row"><dt lang="en">LICENSE</dt><dd><ul class="license-line"><li>情報セキュリティマネジメント試験（SG）</li><li>日商簿記検定 2級</li><li>学芸員補</li></ul></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="about-section section" id="about" aria-labelledby="about-title">
+      <div class="container-wide">
+        <div class="about-grid"><div class="about-heading"><p class="section-label">ABOUT</p><h2 id="about-title">プロフィール</h2></div><!-- タイトル下の帯 --><div class="section-bar about-bar"><p class="section-bar__text">「誰に」「何を」「どう届けるか」。その問いを大切に、一つひとつの仕事と向き合っています。</p></div><div class="about-image"><img src="./assets/portfolio_about.jpg" width="199" height="210" alt="プロフィール写真。焼き網で野菜を焼きながら、カートに乗った犬と一緒に撮った白黒の自撮り" loading="lazy" /></div><div class="about-copy"><p class="about-name" lang="en">IWATA MAKIKO<span class="about-name__brand">Growl LaLaLa Design</span></p><!-- 屋号の下で踊るフラガールと犬4匹（hula.js） --><canvas class="hula-girl" aria-hidden="true"></canvas><p>Webデザインとコーディング、ECサイトの運用を中心に、ロゴやイラストなども手がけています。</p><p>大切にしているのは、相手に何が必要なのかを慎重に見極めること。「誰に、何を、どう届けたいのか」を一緒に整理するところから始め、公開したあとも数字を見ながら、届いているかを確かめて直していきます。つくって終わりにしない、最後まで手を離さない人でありたいと思っています。</p><p>社会人のスタートは、氷河期のフリーターからでした。決して順調な道のりではありませんでしたが、目の前の仕事に向き合いながら、できることを少しずつ増やしてきました。15年近く、犬たちと支え合いながら暮らした時間も、いまの自分の土台となっています。最後の一匹を見送ったいま、改めて、自らや仕事と向き合っています。</p><p>好きなもの：散歩・おもウマイ店を見る・間取り図で妄想</p><ul class="about-links"><li><a class="underlined-link" href="https://www.instagram.com/growl.lalala.design/" target="_blank" rel="noopener noreferrer"><svg class="insta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /><circle class="insta-icon__dot" cx="17.3" cy="6.7" r="1.1" /></svg>Instagram <span aria-hidden="true">↗</span></a></li><li><a class="underlined-link" href="https://github.com/MAKIK-0-IWATA" target="_blank" rel="noopener noreferrer"><svg class="sns-icon sns-icon--fill" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" /></svg>GitHub <span aria-hidden="true">↗</span></a></li><li><a class="underlined-link" href="https://qiita.com/aking" target="_blank" rel="noopener noreferrer"><img class="sns-icon sns-icon--img" src="./assets/qiita-icon.png" width="18" height="18" alt="" />Qiita <span aria-hidden="true">↗</span></a></li></ul>
+          <!-- お問い合わせ（id="contact"：ヘッダーの CONTACT からここへ飛ぶ） -->
+          <div class="about-contact" id="contact">
+            <p class="about-contact__label" lang="en">CONTACT</p>
+            <p class="about-contact__lead">お仕事のご相談は、メールかフォームからお気軽に！　守秘義務のある案件は、個別にお見せしています。</p>
+            <div class="about-contact__row">
+              <p class="about-contact__address">info@growl-lalala-design.com</p>
+              <!-- アドレスの右のコピーボタン。押すとコピーして、アイコンが一瞬チェックに変わる -->
+              <button type="button" class="contact-mail__copy about-contact__copy" data-copy="info@growl-lalala-design.com" aria-label="メールアドレスをコピー" title="コピー">
+                <svg class="contact-mail__icon contact-mail__icon--copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" /></svg>
+                <svg class="contact-mail__icon contact-mail__icon--done" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+              </button>
+            </div>
+            <p class="contact-mail__status about-contact__status" role="status" aria-live="polite"></p>
+            <div class="about-contact__buttons">
+              <a class="button button-outline about-contact__button" href="mailto:info@growl-lalala-design.com?subject=%E3%81%8A%E4%BB%95%E4%BA%8B%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">メールで問い合わせる <span class="arrow arrow--tri" aria-hidden="true"></span></a>
+              <a class="button button-dark about-contact__button" href="https://forms.gle/r1CZp94vTekneR466" target="_blank" rel="noopener noreferrer">フォームで問い合わせる <span class="arrow arrow--tri" aria-hidden="true"></span></a>
+            </div>
+          </div></div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- お問い合わせの下のふちを、手描きの線のようにコマ撮りでゆらすフィルター（テンプレ parts/boil-frame と同じしくみ）
+       seed だけ違う3枚を、CSSで順番に切り替える -->
+  <svg class="visually-hidden-svg" width="0" height="0" aria-hidden="true" focusable="false">
+    <filter id="contact-boil-1" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="1" /><feDisplacementMap in="SourceGraphic" scale="4" /></filter>
+    <filter id="contact-boil-2" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" /><feDisplacementMap in="SourceGraphic" scale="4" /></filter>
+    <filter id="contact-boil-3" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="13" /><feDisplacementMap in="SourceGraphic" scale="4" /></filter>
+    <!-- HEROの円のふち用：お問い合わせと同じ形で、揺れだけ2.5倍（scale 10） -->
+    <filter id="hero-boil-1" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="1" /><feDisplacementMap in="SourceGraphic" scale="10" /></filter>
+    <filter id="hero-boil-2" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" /><feDisplacementMap in="SourceGraphic" scale="10" /></filter>
+    <filter id="hero-boil-3" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="13" /><feDisplacementMap in="SourceGraphic" scale="10" /></filter>
+    <!-- HEROの白い円の「形」と「大きな波」（中身は script.js が作りかえる。ここに書いてあるのは script.js が動かない時の代わり）
+         ・hero-shape-a／b：今の形（丸・四角・五角形）にふちを押し広げる。代わりは「何もしない」（丸のまま）
+         ・hero-wave-a1〜a9／b1〜b9：波打ちながら、次の形へ変わっていく9コマ。代わりは、とがった凹凸のノイズ -->
+    <filter id="hero-shape-a" x="-15%" y="-15%" width="130%" height="130%"><feOffset dx="0" dy="0" /></filter>
+    <filter id="hero-shape-b" x="-15%" y="-15%" width="130%" height="130%"><feOffset dx="0" dy="0" /></filter>
+    <filter id="hero-wave-a1" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="3" /><feDisplacementMap in="SourceGraphic" scale="16" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a2" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="11" /><feDisplacementMap in="SourceGraphic" scale="26" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a3" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="19" /><feDisplacementMap in="SourceGraphic" scale="36" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a4" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="23" /><feDisplacementMap in="SourceGraphic" scale="46" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a5" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="29" /><feDisplacementMap in="SourceGraphic" scale="50" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a6" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="31" /><feDisplacementMap in="SourceGraphic" scale="44" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a7" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="37" /><feDisplacementMap in="SourceGraphic" scale="34" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a8" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="41" /><feDisplacementMap in="SourceGraphic" scale="24" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-a9" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="47" /><feDisplacementMap in="SourceGraphic" scale="16" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b1" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="3" /><feDisplacementMap in="SourceGraphic" scale="16" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b2" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="11" /><feDisplacementMap in="SourceGraphic" scale="26" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b3" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="19" /><feDisplacementMap in="SourceGraphic" scale="36" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b4" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="23" /><feDisplacementMap in="SourceGraphic" scale="46" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b5" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="29" /><feDisplacementMap in="SourceGraphic" scale="50" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b6" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="31" /><feDisplacementMap in="SourceGraphic" scale="44" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b7" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="37" /><feDisplacementMap in="SourceGraphic" scale="34" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b8" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="41" /><feDisplacementMap in="SourceGraphic" scale="24" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <filter id="hero-wave-b9" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" seed="47" /><feDisplacementMap in="SourceGraphic" scale="16" xChannelSelector="R" yChannelSelector="G" /></filter>
+    <!-- HOMEのフッターの上のふち用：HEROの円が「大きく波打つ」時くらいの、ゆるやかで大きなうねり（baseFrequency 0.015・scale 30） -->
+    <filter id="footer-wave-1" x="-5%" y="-40%" width="110%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="3" /><feDisplacementMap in="SourceGraphic" scale="30" /></filter>
+    <filter id="footer-wave-2" x="-5%" y="-40%" width="110%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="19" /><feDisplacementMap in="SourceGraphic" scale="30" /></filter>
+    <filter id="footer-wave-3" x="-5%" y="-40%" width="110%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="29" /><feDisplacementMap in="SourceGraphic" scale="30" /></filter>
+    <!-- スマホHEROのタイルのふち用（大きなうねり）：ゆるやかで大きな凹凸（baseFrequency 0.015）、ゆれ幅は HERO の大きな波の半分くらい（scale 15） -->
+    <filter id="edge-wave-1" x="-5%" y="-50%" width="110%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="3" /><feDisplacementMap in="SourceGraphic" scale="15" /></filter>
+    <filter id="edge-wave-2" x="-5%" y="-50%" width="110%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="19" /><feDisplacementMap in="SourceGraphic" scale="15" /></filter>
+    <filter id="edge-wave-3" x="-5%" y="-50%" width="110%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" seed="29" /><feDisplacementMap in="SourceGraphic" scale="15" /></filter>
+    <!-- スマホHEROのタイルのふち用：細い帯にかけるので、縦の範囲を広め（上下50%）にして揺れが切れないようにする -->
+    <filter id="edge-boil-1" x="-5%" y="-50%" width="110%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="1" /><feDisplacementMap in="SourceGraphic" scale="10" /></filter>
+    <filter id="edge-boil-2" x="-5%" y="-50%" width="110%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" /><feDisplacementMap in="SourceGraphic" scale="10" /></filter>
+    <filter id="edge-boil-3" x="-5%" y="-50%" width="110%" height="200%"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="13" /><feDisplacementMap in="SourceGraphic" scale="10" /></filter>
+  </svg>
+
+  <!-- フッター：上のふちがふよふよゆれる深緑の帯に、コピーライトだけ -->
+  <footer class="site-footer site-footer--band"><div class="container-wide footer-inner"><small>© Growl LaLaLa Design</small></div></footer>
+
+  <!-- TOPに戻るボタン：ロゴ中央の4色マーク。HEROを過ぎたら右下に出る -->
+  <a class="to-top" href="#top" aria-label="ページの先頭へ戻る">
+    <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <!-- 左上の1枚を描き、90度ずつ回して4枚にする（形を1か所で直せるように） -->
+      <defs><path id="mark-quarter" d="M42.5 0.6A50 50 0 0 0 0.6 42.5H37.5Q42.5 42.5 42.5 37.5Z" /></defs>
+      <use href="#mark-quarter" fill="var(--mark-1)" />
+      <use href="#mark-quarter" fill="var(--mark-2)" transform="rotate(90 50 50)" />
+      <use href="#mark-quarter" fill="var(--mark-3)" transform="rotate(180 50 50)" />
+      <use href="#mark-quarter" fill="var(--mark-4)" transform="rotate(270 50 50)" />
+    </svg>
+    <span class="to-top__label" aria-hidden="true">TOP</span>
+  </a>
+
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-inner"><button class="dialog-close" type="button" aria-label="作品の詳細を閉じる">×</button><div class="dialog-image"><img src="" alt="" id="dialog-image" /><div class="dialog-thumbs" id="dialog-thumbs" hidden></div></div><div class="dialog-copy"><p class="eyebrow" id="dialog-category"></p><h2 id="dialog-title"></h2><p id="dialog-description"></p><a href="#" class="dialog-link" id="dialog-link" target="_blank" rel="noopener" hidden><span></span> <span class="arrow" aria-hidden="true">↗</span></a><div class="dialog-actions"><a href="#" class="button button-dark" id="dialog-detail" hidden>詳細を見る <span class="arrow" aria-hidden="true">→</span></a><button type="button" class="dialog-back">一覧に戻る</button></div></div></div>
+  </dialog>
+</body>
+</html>
