@@ -1271,3 +1271,6 @@ body.menu-open .to-top{display:none}
    Safari は、中の em が inline-block や position:relative だと、そこにグラデーションを塗らず、文字が透明のまま消えてしまう。
    em をふつうの文字（inline・位置指定なし）に戻す。改行は <br> でしているので、見た目は変わらない */
 .hero h1 em{display:inline;position:static}
+
+/* ===== オープニングの屋号：全部大文字（GROWL LALALA DESIGN）をやめ、正式な書き方「Growl LaLaLa Design」のまま出す ===== */
+.opening__sub{text-transform:none}
