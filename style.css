@@ -1253,3 +1253,7 @@ body.menu-open .to-top{display:none}
 .works-more__button:hover,.works-more__button:focus-visible{background:rgba(23,74,67,.5);background-clip:padding-box;border-color:rgba(23,74,67,.6);color:#fff;transform:none}
 /* 深緑50%だと薄すぎたので、「制作事例を見る」「フォームで問い合わせる」と同じ塗りの色（--fill：#568679）に */
 .works-more__button:hover,.works-more__button:focus-visible{background:var(--fill);border-color:var(--fill)}
+
+/* ===== HEROの白いボタン「わたしについて」：ホバーしたら、緑ボタンのふだんの色（--fill：#568679）に塗る ===== */
+/* 前は深緑50%の薄い塗り。「もっと見る」とそろえて、白い文字が読める緑ボタンと同じ色にする */
+.hero-actions .button-outline:hover,.hero-actions .button-outline:focus-visible{background:var(--fill);border-color:var(--fill);color:#fff}
