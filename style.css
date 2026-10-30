@@ -1265,3 +1265,9 @@ body.menu-open .to-top{display:none}
 /* ===== 緑ボタンは、どれもホバーしたらHEROの「制作事例を見る」と同じ見た目に ===== */
 /* 前は白に変わっていた（プロフィール下「フォームで問い合わせる」など）。深緑50%の塗り・枠線60%・白い文字にそろえる */
 .button-dark:hover,.button-dark:focus-visible{background:rgba(23,74,67,.5);background-clip:padding-box;border-color:rgba(23,74,67,.6);color:#fff}
+
+/* ===== HERO見出し：iPhone（Safari）で「デザイン。」が消える不具合を直す ===== */
+/* 見出しは「文字の形でグラデーションを切り抜く」（background-clip:text）作り。
+   Safari は、中の em が inline-block や position:relative だと、そこにグラデーションを塗らず、文字が透明のまま消えてしまう。
+   em をふつうの文字（inline・位置指定なし）に戻す。改行は <br> でしているので、見た目は変わらない */
+.hero h1 em{display:inline;position:static}
