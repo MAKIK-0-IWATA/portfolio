@@ -1240,3 +1240,9 @@ body.menu-open .to-top{display:none}
   .dialog-thumbs button{width:52px;height:52px}
   .dialog-copy>p#dialog-description{font-size:13px}
 }
+
+/* ===== 制作事例カード：iPhone（Safari）でも画像を台紙の中に収める =====
+   「max-height:80%」は、高さが aspect-ratio で決まる箱だと Safari で効かないことがあり、画像が大きくはみ出して切れていた。
+   台紙そのものを「ものさし」にして（container-type:size）、台紙の幅・高さの80%（80cqw・80cqh）で上限を決める */
+.works-grid .work-art{container-type:size}
+.works-grid .work-art img{max-width:80cqw;max-height:80cqh}
