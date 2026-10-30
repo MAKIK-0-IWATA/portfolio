@@ -1261,3 +1261,7 @@ body.menu-open .to-top{display:none}
 /* ===== 白いボタン（枠線だけのボタン）は、どれもホバーしたら緑ボタンのふだんの色（--fill）に塗る ===== */
 /* HERO・もっと見る・プロフィール下「メールで問い合わせる」・詳細ページ「一覧へ戻る」をまとめてそろえる */
 .button-outline:hover,.button-outline:focus-visible{background:var(--fill);background-clip:padding-box;border-color:var(--fill);color:#fff}
+
+/* ===== 緑ボタンは、どれもホバーしたらHEROの「制作事例を見る」と同じ見た目に ===== */
+/* 前は白に変わっていた（プロフィール下「フォームで問い合わせる」など）。深緑50%の塗り・枠線60%・白い文字にそろえる */
+.button-dark:hover,.button-dark:focus-visible{background:rgba(23,74,67,.5);background-clip:padding-box;border-color:rgba(23,74,67,.6);color:#fff}
