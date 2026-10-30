@@ -1257,3 +1257,7 @@ body.menu-open .to-top{display:none}
 /* ===== HEROの白いボタン「わたしについて」：ホバーしたら、緑ボタンのふだんの色（--fill：#568679）に塗る ===== */
 /* 前は深緑50%の薄い塗り。「もっと見る」とそろえて、白い文字が読める緑ボタンと同じ色にする */
 .hero-actions .button-outline:hover,.hero-actions .button-outline:focus-visible{background:var(--fill);border-color:var(--fill);color:#fff}
+
+/* ===== 白いボタン（枠線だけのボタン）は、どれもホバーしたら緑ボタンのふだんの色（--fill）に塗る ===== */
+/* HERO・もっと見る・プロフィール下「メールで問い合わせる」・詳細ページ「一覧へ戻る」をまとめてそろえる */
+.button-outline:hover,.button-outline:focus-visible{background:var(--fill);background-clip:padding-box;border-color:var(--fill);color:#fff}
