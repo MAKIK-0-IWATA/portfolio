@@ -1246,3 +1246,8 @@ body.menu-open .to-top{display:none}
    台紙そのものを「ものさし」にして（container-type:size）、台紙の幅・高さの80%（80cqw・80cqh）で上限を決める */
 .works-grid .work-art{container-type:size}
 .works-grid .work-art img{max-width:80cqw;max-height:80cqh}
+
+/* ===== 制作事例「もっと見る」：ホバー・タップ時の色をHEROのボタンと同じ薄さに ===== */
+/* 前は深緑100%（#174a43）でベタ塗りになり、ほかのボタンより濃く見えていた。
+   HEROと同じく、深緑50%の塗り・枠線60%・浮き上がりなしにそろえる */
+.works-more__button:hover,.works-more__button:focus-visible{background:rgba(23,74,67,.5);background-clip:padding-box;border-color:rgba(23,74,67,.6);color:#fff;transform:none}
