@@ -1290,3 +1290,20 @@ body.menu-open .to-top{display:none}
 /* 前は台紙の幅に収めようとして小さな画像が細くつぶれていた。大きさは固定し、はみ出した分は指・ホイールで横に送る */
 .dialog-thumbs{justify-content:safe center;overflow-x:auto;padding:2px 16px;scrollbar-width:thin;overscroll-behavior-x:contain}
 .dialog-thumbs button{flex:none}
+
+/* ===== お客様の声（制作事例の下）：3件を横に並べる。スマホは縦に積む ===== */
+/* カードの左上に、ロゴの4色の葉から1色ずつ「“」を置く。「作品を見る」で、その作品のモーダルが開く */
+.voice{margin-top:clamp(72px,8vw,112px)}
+.voice-heading{margin-bottom:28px}
+.voice-heading h3{margin:6px 0 0;font-size:clamp(22px,2vw,28px);font-weight:700;letter-spacing:.04em;color:var(--deep)}
+.voice-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:0;padding:0;list-style:none}
+.voice-card{position:relative;display:flex;flex-direction:column;padding:44px 26px 22px;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+.voice-card::before{content:'“';position:absolute;top:6px;left:20px;font-family:Georgia,serif;font-size:56px;line-height:1;color:var(--mark-4)}
+.voice-card:nth-child(2)::before{color:var(--mark-3)}
+.voice-card:nth-child(3)::before{color:#6E9A3C}
+.voice-card__text{flex:1;margin:0;font-size:14px;line-height:2;color:var(--ink)}
+.voice-card__work{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+.voice-card__link{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:8px;padding:8px 0;border:0;background:none;font:inherit;font-size:13px;font-weight:700;color:var(--deep);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.voice-card__link:hover,.voice-card__link:focus-visible{color:var(--fill)}
+@media(max-width:900px){.voice-list{grid-template-columns:1fr;gap:14px}}
+@media(max-width:650px){.voice-card{padding:40px 20px 16px}.voice-card__text{font-size:13px}}

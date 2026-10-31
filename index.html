@@ -36,7 +36,7 @@
       if ((force || !seen) && !reduce) document.documentElement.classList.add('has-opening', 'is-opening');
     })();
   </script>
-  <link rel="stylesheet" href="./style.css?v=231" />
+  <link rel="stylesheet" href="./style.css?v=232" />
   <script src="./script.js?v=104" defer></script>
   <script src="./hula.js?v=3" defer></script>
 </head>
@@ -309,6 +309,28 @@
         <div class="works-more" hidden><button type="button" class="button button-outline works-more__button" id="works-more-button">もっと見る <span class="works-more__count"></span></button></div>
         <!-- 絞り込んだ分類に作品がない時だけ出す（運用・改善など） -->
         <p class="works-empty" id="works-empty" hidden>この分野の事例は、守秘義務のため個別にお見せしています。<br />お問い合わせからお気軽にご相談ください。</p>
+
+        <!-- お客様の声：前のサイトに載せていた3件（原文のまま）。「作品を見る」で、その作品のモーダルが開く -->
+        <div class="voice" aria-labelledby="voice-title">
+          <div class="voice-heading"><p class="section-label">VOICE</p><h3 id="voice-title">お客様の声</h3></div>
+          <ul class="voice-list">
+            <li class="voice-card">
+              <p class="voice-card__text">設計書等もなく、テキストベースの曖昧な指示の中、きちんとワイヤーフレームを作成いただきました。画面の流れがわかりづらいものは、こちらから依頼を出したわけでもないのに、画面遷移図なども提供していただけました。</p>
+              <p class="voice-card__work">家事代行アプリのワイヤーフレーム作成</p>
+              <button type="button" class="voice-card__link" data-project="wireframe">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button>
+            </li>
+            <li class="voice-card">
+              <p class="voice-card__text">こちらの要望に最初から最後まで寄り添って頂いて感謝しております。提案力、最高に良かったです。</p>
+              <p class="voice-card__work">ヘアサロンのVIPカード制作</p>
+              <button type="button" class="voice-card__link" data-project="vip">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button>
+            </li>
+            <li class="voice-card">
+              <p class="voice-card__text">イメージの共有、迅速なご対応。短い期間での納品だったため、助かりました！</p>
+              <p class="voice-card__work">室内ゴルフ場フロアマップ</p>
+              <button type="button" class="voice-card__link" data-project="golfmap">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
