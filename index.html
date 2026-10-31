@@ -36,7 +36,7 @@
       if ((force || !seen) && !reduce) document.documentElement.classList.add('has-opening', 'is-opening');
     })();
   </script>
-  <link rel="stylesheet" href="./style.css?v=236" />
+  <link rel="stylesheet" href="./style.css?v=238" />
   <script src="./script.js?v=106" defer></script>
   <script src="./hula.js?v=3" defer></script>
 </head>
@@ -314,7 +314,7 @@
              ・指でスワイプ／左右の矢印／下の点で切り替え。7秒ごとに自動で次へ（触っている間・動きを減らす設定では止まる）
              ・「作品を見る」で、その作品のモーダルが開く（動きは script.js の「お客様の声」） -->
         <div class="voice" role="region" aria-roledescription="カルーセル" aria-label="お客様の声">
-          <p class="voice-label">お客様の声</p>
+          <p class="voice-label" aria-hidden="true"><span lang="en">CUSTOMER VOICE</span><span>お客様の声</span></p>
           <div class="voice-track" id="voice-track">
             <figure class="voice-slide" role="group" aria-roledescription="スライド" aria-label="1 / 3">
               <blockquote class="voice-slide__text"><p>設計書等もなく、テキストベースの曖昧な指示の中、きちんとワイヤーフレームを作成いただきました。画面の流れがわかりづらいものは、こちらから依頼を出したわけでもないのに、画面遷移図なども提供していただけました。</p></blockquote>
