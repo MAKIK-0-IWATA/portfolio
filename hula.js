@@ -1,7 +1,8 @@
 /* =========================================================
    プロフィール：フラダンスを踊るフラガールのピクセルアニメ
    ・80×30マスの小さなキャンバスに1マス=1pxで描き、CSSで4倍に拡大（image-rendering:pixelated）
-   ・左に犬が4匹（フラガールの方を向いて、交互にぴょこぴょこ跳ねてしっぽを振る）、右はしにフラガール
+   ・左に犬が4匹（フラガールの方を向いて、交互にぴょこぴょこ跳ねてしっぽを振る）、その右にフラガール
+   ・右はしに椰子の木（フラダンスだとひと目でわかるように）。葉はフラガールの腰に合わせて左右にゆれる
    ・4コマ（左へ → 真ん中 → 右へ → 真ん中）をコマ撮りのように切り替える
    ・腰とスカートを左右にゆらし、腕は波のように左右へ流す
    ・色はロゴの4色（黄緑・黄・赤・深緑）を使う
@@ -11,8 +12,9 @@
   const canvas = document.querySelector('.hula-girl');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const W = 80, H = 30;
+  const W = 96, H = 30; // 横は 犬4匹＋フラガール（80マス）＋椰子の木（16マス）
   const GIRL_X = 56; // フラガールを描き始める横の位置（その左が犬のスペース）
+  const PALM_X = 80; // 椰子の木を描き始める横の位置
   canvas.width = W;
   canvas.height = H;
 
@@ -83,9 +85,36 @@
     else { [2, 4, 6, 8].forEach(x => p(x, 7, dog.body)); }
   }
 
+  // 椰子の木（16×29マス）。幹は根元から上へ少し右に反らせ、2マスごとに色を変えて節にする。
+  // 葉は5枚、てっぺんから垂れ下がるように伸ばし、s（フラガールの腰のゆれ）の分だけ先を左右にゆらす
+  function drawPalm(x0, s) {
+    const p = (x, y, c) => px(x0 + x, y, c);
+    for (let y = 8; y <= 28; y++) {
+      const x = 5 + Math.round(Math.pow((28 - y) / 20, 2) * 3);
+      const c = Math.floor(y / 2) % 2 ? '#8a5a33' : '#6e4424';
+      p(x, y, c); p(x + 1, y, c);
+    }
+    const leaf = (pts, c) => {
+      for (let i = 0; i < pts.length - 1; i++) line(x0 + pts[i][0], pts[i][1], x0 + pts[i + 1][0], pts[i + 1][1], c);
+    };
+    // 葉：明るい緑の上に、1マス下へ深緑を重ねて厚みを出す
+    const LEAVES = [
+      [[9, 6], [4, 4], [1, 7 + (s < 0 ? 1 : 0)]],   // 左へ長く垂れる
+      [[9, 6], [6, 2], [3, 2]],                       // 左上
+      [[9, 6], [10, 1], [12, 0]],                     // 上
+      [[9, 6], [13, 3], [15, 5]],                     // 右上
+      [[9, 6], [13, 6], [15, 9 + (s > 0 ? 1 : 0)]]    // 右へ長く垂れる
+    ].map(pts => pts.map(([x, y], i) => [i === pts.length - 1 ? Math.max(0, Math.min(15, x + s)) : x, y]));
+    LEAVES.forEach(pts => leaf(pts.map(([x, y]) => [x, y + 1]), C.deep));
+    LEAVES.forEach(pts => leaf(pts, C.green));
+    // ヤシの実
+    p(8, 7, '#6e4424'); p(10, 7, '#6e4424'); p(9, 8, '#8a5a33');
+  }
+
   function drawFrame(f, frameIndex) {
     ctx.clearRect(0, 0, W, H);
     DOGS.forEach((dog, i) => drawDog(i * 14, dog, frameIndex, i));
+    drawPalm(PALM_X, f.sway);
     ctx.save();
     ctx.translate(GIRL_X, 0);
     const s = f.sway;

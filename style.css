@@ -1430,3 +1430,7 @@ body.menu-open .to-top{display:none}
 @media(max-width:650px){
   .about-career__list>div{grid-template-columns:1fr;gap:0;font-size:13px}
 }
+
+/* ===== プロフィールのピクセルアニメ：右はしに椰子の木を足して横に16マス広げた（80→96マス）ので、表示の幅も同じ割合で広げる ===== */
+.about-copy .hula-girl{width:288px;height:90px}
+@media(max-width:650px){.about-copy .hula-girl{width:240px;height:75px}}
