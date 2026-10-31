@@ -672,3 +672,57 @@ if (abilityGrid) {
   setInterval(tick, 400);
   new ResizeObserver(() => { clearTimeout(timer); timer = setTimeout(fit, 150); }).observe(wrap);
 })();
+
+// ===== お客様の声：1件ずつ見せるスライダー =====
+// 横に並べた3枚を、まとめて「1枚分ずつ左へずらす」（transform）ことで切り替える。
+// スクロールで動かす作りは、途中で止まって2枚の間に挟まることがあったので使わない
+(() => {
+  const track = document.querySelector('#voice-track');
+  if (!track) return;
+  const root = track.closest('.voice');
+  const slides = [...track.querySelectorAll('.voice-slide')];
+  const dotsBox = root.querySelector('.voice-dots');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0;
+  const dots = slides.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'voice-dots__dot';
+    dot.setAttribute('aria-label', `${i + 1}件目`);
+    dot.addEventListener('click', () => go(i));
+    dotsBox.append(dot);
+    return dot;
+  });
+  const go = i => {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((slide, n) => {
+      slide.style.transform = `translateX(${-current * 100}%)`;
+      // 見えていない2枚は、読み上げ・Tabキーの対象から外す
+      slide.inert = n !== current;
+      slide.setAttribute('aria-hidden', n === current ? 'false' : 'true');
+    });
+    dots.forEach((dot, n) => dot.setAttribute('aria-current', n === current ? 'true' : 'false'));
+  };
+  root.querySelector('.voice-nav__arrow--prev').addEventListener('click', () => go(current - 1));
+  root.querySelector('.voice-nav__arrow--next').addEventListener('click', () => go(current + 1));
+  // スマホ：横に40px以上スワイプしたら前後へ（縦のスクロールはそのまま）
+  let startX = null, startY = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startY = e.touches[0].clientY; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX, dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(current + (dx < 0 ? 1 : -1));
+    startX = null;
+  }, { passive: true });
+  go(0);
+  // 自動送り：マウスが乗っている間・指で触れた後・中にフォーカスがある間・画面外では止める
+  if (reduce) return;
+  let paused = false, visible = false;
+  root.addEventListener('pointerenter', () => { paused = true; });
+  root.addEventListener('pointerleave', () => { paused = false; });
+  root.addEventListener('focusin', () => { paused = true; });
+  root.addEventListener('focusout', () => { paused = false; });
+  track.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }).observe(root);
+  setInterval(() => { if (!paused && visible && !document.hidden) go(current + 1); }, 7000);
+})();

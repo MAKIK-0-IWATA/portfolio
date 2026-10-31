@@ -1307,3 +1307,41 @@ body.menu-open .to-top{display:none}
 .voice-card__link:hover,.voice-card__link:focus-visible{color:var(--fill)}
 @media(max-width:900px){.voice-list{grid-template-columns:1fr;gap:14px}}
 @media(max-width:650px){.voice-card{padding:40px 20px 16px}.voice-card__text{font-size:13px}}
+
+/* ===== お客様の声：見出しを立てず、1件ずつ大きく見せるスライダーに作り替え ===== */
+/* 前は「VOICE お客様の声」の小さな見出し＋カード3枚で、ほかのセクションより見出しだけ小さく見えて浮いていた。
+   薄いグリーンの台紙に、コメントを大きく1件ずつ。誰の声かは、コメントの下の「お客様の声｜作品名」で伝える
+   （上の .voice-heading・.voice-list・.voice-card は、もう使っていない） */
+.voice{position:relative;margin-top:clamp(72px,8vw,112px);padding:clamp(40px,5vw,64px) 0 clamp(24px,3vw,32px);background:var(--sage);border-radius:12px}
+/* 左上の大きな「“」 */
+.voice::before{content:'“';position:absolute;top:clamp(8px,1.5vw,18px);left:clamp(20px,4vw,56px);font-family:Georgia,serif;font-size:clamp(72px,8vw,120px);line-height:1;color:var(--mark-4);opacity:.85;pointer-events:none}
+.voice-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.voice-track::-webkit-scrollbar{display:none}
+.voice-slide{flex:0 0 100%;scroll-snap-align:start;margin:0;padding:0 clamp(24px,10vw,160px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.voice-slide__text{margin:0}
+.voice-slide__text p{margin:0;font-size:clamp(16px,1.6vw,21px);font-weight:500;line-height:2;letter-spacing:.04em;color:var(--deep)}
+.voice-slide__cap{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 14px;margin-top:24px;font-size:13px;color:var(--muted)}
+.voice-slide__label{font-weight:700;letter-spacing:.08em}
+.voice-slide__label::after{content:'｜';margin-left:14px;color:#b7c1ba}
+.voice-slide__link{display:inline-flex;align-items:center;gap:8px;padding:8px 2px;border:0;background:none;font:inherit;font-size:13px;font-weight:700;color:var(--deep);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.voice-slide__link:hover,.voice-slide__link:focus-visible{color:var(--fill)}
+/* 下の操作：← ・・・ → */
+.voice-nav{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:20px}
+.voice-nav__arrow{position:relative;width:44px;height:44px;border:1px solid var(--deep);border-radius:50%;background:transparent;cursor:pointer;transition:background-color .2s ease,border-color .2s ease}
+.voice-nav__arrow::before{content:'';position:absolute;top:50%;left:50%;width:9px;height:9px;border-top:1.5px solid var(--deep);border-right:1.5px solid var(--deep);transform:translate(-65%,-50%) rotate(45deg)}
+.voice-nav__arrow--prev::before{transform:translate(-35%,-50%) rotate(-135deg)}
+.voice-nav__arrow:hover,.voice-nav__arrow:focus-visible{background:var(--fill);border-color:var(--fill)}
+.voice-nav__arrow:hover::before,.voice-nav__arrow:focus-visible::before{border-color:#fff}
+.voice-dots{display:flex;gap:4px}
+.voice-dots__dot{width:24px;height:24px;padding:0;border:0;background:none;cursor:pointer;position:relative}
+.voice-dots__dot::before{content:'';position:absolute;inset:0;margin:auto;width:8px;height:8px;border-radius:50%;background:var(--deep);opacity:.25;transition:opacity .2s ease,width .2s ease}
+.voice-dots__dot[aria-current="true"]::before{opacity:1;width:20px;border-radius:4px}
+@media(max-width:650px){
+  .voice{border-radius:8px}
+  .voice-slide__text p{text-align:left}
+  .voice-slide__cap{justify-content:flex-start;text-align:left}
+}
+/* 切り替えは「ずらす」作りに変えたので、横スクロールはやめて、はみ出した2枚は隠す */
+.voice-track{overflow:hidden;scroll-snap-type:none}
+.voice-slide{transition:transform .6s cubic-bezier(.2,.7,.1,1)}
+@media (prefers-reduced-motion:reduce){.voice-slide{transition:none}}

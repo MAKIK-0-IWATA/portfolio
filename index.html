@@ -36,8 +36,8 @@
       if ((force || !seen) && !reduce) document.documentElement.classList.add('has-opening', 'is-opening');
     })();
   </script>
-  <link rel="stylesheet" href="./style.css?v=232" />
-  <script src="./script.js?v=104" defer></script>
+  <link rel="stylesheet" href="./style.css?v=234" />
+  <script src="./script.js?v=106" defer></script>
   <script src="./hula.js?v=3" defer></script>
 </head>
 <body id="top">
@@ -310,26 +310,29 @@
         <!-- 絞り込んだ分類に作品がない時だけ出す（運用・改善など） -->
         <p class="works-empty" id="works-empty" hidden>この分野の事例は、守秘義務のため個別にお見せしています。<br />お問い合わせからお気軽にご相談ください。</p>
 
-        <!-- お客様の声：前のサイトに載せていた3件（原文のまま）。「作品を見る」で、その作品のモーダルが開く -->
-        <div class="voice" aria-labelledby="voice-title">
-          <div class="voice-heading"><p class="section-label">VOICE</p><h3 id="voice-title">お客様の声</h3></div>
-          <ul class="voice-list">
-            <li class="voice-card">
-              <p class="voice-card__text">設計書等もなく、テキストベースの曖昧な指示の中、きちんとワイヤーフレームを作成いただきました。画面の流れがわかりづらいものは、こちらから依頼を出したわけでもないのに、画面遷移図なども提供していただけました。</p>
-              <p class="voice-card__work">家事代行アプリのワイヤーフレーム作成</p>
-              <button type="button" class="voice-card__link" data-project="wireframe">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button>
-            </li>
-            <li class="voice-card">
-              <p class="voice-card__text">こちらの要望に最初から最後まで寄り添って頂いて感謝しております。提案力、最高に良かったです。</p>
-              <p class="voice-card__work">ヘアサロンのVIPカード制作</p>
-              <button type="button" class="voice-card__link" data-project="vip">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button>
-            </li>
-            <li class="voice-card">
-              <p class="voice-card__text">イメージの共有、迅速なご対応。短い期間での納品だったため、助かりました！</p>
-              <p class="voice-card__work">室内ゴルフ場フロアマップ</p>
-              <button type="button" class="voice-card__link" data-project="golfmap">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button>
-            </li>
-          </ul>
+        <!-- お客様の声：前のサイトに載せていた3件（原文のまま）。見出しは立てず、1件ずつ大きく見せるスライダーにする
+             ・指でスワイプ／左右の矢印／下の点で切り替え。7秒ごとに自動で次へ（触っている間・動きを減らす設定では止まる）
+             ・「作品を見る」で、その作品のモーダルが開く（動きは script.js の「お客様の声」） -->
+        <div class="voice" role="region" aria-roledescription="カルーセル" aria-label="お客様の声">
+          <div class="voice-track" id="voice-track">
+            <figure class="voice-slide" role="group" aria-roledescription="スライド" aria-label="1 / 3">
+              <blockquote class="voice-slide__text"><p>設計書等もなく、テキストベースの曖昧な指示の中、きちんとワイヤーフレームを作成いただきました。画面の流れがわかりづらいものは、こちらから依頼を出したわけでもないのに、画面遷移図なども提供していただけました。</p></blockquote>
+              <figcaption class="voice-slide__cap"><span class="voice-slide__label">お客様の声</span><span class="voice-slide__work">家事代行アプリのワイヤーフレーム作成</span><button type="button" class="voice-slide__link" data-project="wireframe">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button></figcaption>
+            </figure>
+            <figure class="voice-slide" role="group" aria-roledescription="スライド" aria-label="2 / 3">
+              <blockquote class="voice-slide__text"><p>こちらの要望に最初から最後まで寄り添って頂いて感謝しております。提案力、最高に良かったです。</p></blockquote>
+              <figcaption class="voice-slide__cap"><span class="voice-slide__label">お客様の声</span><span class="voice-slide__work">ヘアサロンのVIPカード制作</span><button type="button" class="voice-slide__link" data-project="vip">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button></figcaption>
+            </figure>
+            <figure class="voice-slide" role="group" aria-roledescription="スライド" aria-label="3 / 3">
+              <blockquote class="voice-slide__text"><p>イメージの共有、迅速なご対応。短い期間での納品だったため、助かりました！</p></blockquote>
+              <figcaption class="voice-slide__cap"><span class="voice-slide__label">お客様の声</span><span class="voice-slide__work">室内ゴルフ場フロアマップ</span><button type="button" class="voice-slide__link" data-project="golfmap">作品を見る <span class="arrow arrow--tri" aria-hidden="true"></span></button></figcaption>
+            </figure>
+          </div>
+          <div class="voice-nav">
+            <button type="button" class="voice-nav__arrow voice-nav__arrow--prev" aria-label="前のお客様の声"></button>
+            <div class="voice-dots" role="group" aria-label="表示するお客様の声を選ぶ"></div>
+            <button type="button" class="voice-nav__arrow voice-nav__arrow--next" aria-label="次のお客様の声"></button>
+          </div>
         </div>
       </div>
     </section>
