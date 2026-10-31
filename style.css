@@ -1375,3 +1375,11 @@ body.menu-open .to-top{display:none}
   .voice-label span:first-child{font-size:clamp(20px,7vw,30px);letter-spacing:.04em;white-space:nowrap}
   .voice-slide__text::before{text-align:left}
 }
+
+/* ===== お客様の声：うっすら見出しは英字だけにし、台紙の上のふちギリギリに寄せる ===== */
+.voice{padding-top:clamp(8px,1vw,14px)}
+.voice-label{margin-bottom:clamp(16px,2.4vw,32px)}
+.voice-label span:first-child{line-height:.8}
+/* 日本語を外して英字1つだけになったので、日本語用の「最後の文字（:last-child）＝小さく」が英字に当たらないよう、英字の大きさを指定し直す */
+.voice-label span:only-child{font-size:clamp(30px,4.6vw,64px);letter-spacing:.08em}
+@media(max-width:650px){.voice-label span:only-child{font-size:clamp(20px,7vw,30px);letter-spacing:.04em}}
