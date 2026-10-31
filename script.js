@@ -28,7 +28,7 @@ const projects = {
     title: '医療品（インソール）のLP制作',
     description: '業種「医療品販売」\nターゲット「老若男女」\nご希望の内容\n・O脚・X脚・猫背・外反母趾などで悩んでいる人向け\n・上質な本革で匠の職人の手で一つ一つ丹念に作成している高級インソール\n・医療機関にも採用され、特許取得もしているので、権威性や信頼感を出したい\n\n制作のポイント\nFVで権威性を示し、親しみやすい雰囲気のイラストを使用してユーザー目線に近いところから内容を説明していく。\nインソールとしては、価格設定が高いため、購入ボタンやデザインに高級感をもたせたデザインで制作。',
     images: [
-      { src: './assets/works/insole-1.png', alt: 'インソールのLPをノートパソコンとスマートフォンに表示したイメージ' },
+      { src: './assets/works/insole-1.jpg', alt: 'インソールのLPをノートパソコンとスマートフォンに表示したイメージ' },
       { src: './assets/works/insole-2.jpg', alt: 'LPのファーストビューをスマートフォンに表示したイメージ' },
       { src: './assets/works/insole-3.jpg', alt: 'LP全体をスマートフォン画面と並べたイメージ' },
       { src: './assets/works/insole-4.jpg', alt: 'LPのスマートフォン版とPC版を、上から順に並べた全体像' }
@@ -40,7 +40,7 @@ const projects = {
     title: 'ゴルフスクールのLP制作',
     description: 'ターゲット「30代〜60代の男女」\nご希望の内容\n・スクールの写真を使用してほしい\n・具体的な成果を示し信頼感を出したい\n・Wixで運用・前半部分\n\n制作のポイント\nCTAボタンを挟みながら商品紹介をしていく。ユーザーのスコア改善例は、提供いただいた資料をすべて使用。',
     images: [
-      { src: './assets/works/golflp-1.png', alt: 'ゴルフスクールのLPをノートパソコンとスマートフォンに表示したイメージ' },
+      { src: './assets/works/golflp-1.jpg', alt: 'ゴルフスクールのLPをノートパソコンとスマートフォンに表示したイメージ' },
       { src: './assets/works/golflp-2.jpg', alt: 'LPのファーストビューをスマートフォンに表示したイメージ' },
       { src: './assets/works/golflp-3.jpg', alt: 'LP全体をスマートフォン画面と並べたイメージ' },
       { src: './assets/works/golflp-4.jpg', alt: 'LPのファーストビュー。「5ラウンド以内に100が切れなければ全額返金！」の文字と、レッスン中の写真' },
@@ -99,7 +99,7 @@ const projects = {
     category: 'WEB DESIGN / WORDPRESS',
     title: 'ギター教室のHP制作',
     description: 'クライアント：益田ギターアカデミー\n制作物：ホームページ、ロゴ\n使用ソフト：Figma、Illustrator、WordPress、Visual Studio Code\n\n使えなくなったホームページの作り直しのご依頼。WordPressのオリジナルテーマを一から作りました。\n生成AIが普及する前の制作で、コードはすべて自分で書いています。記事の種類を増やすしくみ（カスタム投稿タイプ）や、スマホとPCで地図を出し分ける処理なども実装しました。',
-    image: './assets/works/guitar-hp.png', alt: '益田ギターアカデミーのホームページ。トップ・今日の一曲・受講生募集・講師紹介・お問い合わせの5ページを並べたデザイン'
+    image: './assets/works/guitar-hp.jpg', alt: '益田ギターアカデミーのホームページ。トップ・今日の一曲・受講生募集・講師紹介・お問い合わせの5ページを並べたデザイン'
   },
   guitarlogo: {
     category: 'GRAPHIC / LOGO',
@@ -226,8 +226,8 @@ const projects = {
     description: '使用ツール：CLIP STUDIO PAINT\n\n高校時代は同人誌を友人と作って、美術室でペン入れしたりトーンを貼ったりしていました。懐かしいです。今はデジタルの時代だからデジ絵も描けるようになれたらいいなと思って、数年前から始め、たまに描いています。\n書きかけのラフみたいなものが好きで、完成させないまま途中までで終わることが多いです。\nラフでいつも思い出すのは、学生時代に観た「マルメロの陽光」という映画で、その画家さんはキャンバスに時間を塗り込めようとしてたのか、未完成でまた上塗りして1から描く、未完成でまた上塗りして1から描くということを繰り返していたのが衝撃でした。',
     images: [
       { src: './assets/works/illust-1.jpg', alt: '女性のイラスト' },
-      { src: './assets/works/illust-2.png', alt: '男性の似顔絵イラスト' },
-      { src: './assets/works/illust-3.png', alt: 'キャラクターのイラスト' }
+      { src: './assets/works/illust-2.jpg', alt: '男性の似顔絵イラスト' },
+      { src: './assets/works/illust-3.jpg', alt: 'キャラクターのイラスト' }
     ],
     start: 2 // 最初に大きく出す画像（カードと同じもの）
   },
@@ -236,7 +236,7 @@ const projects = {
     title: 'キャラクター作成（お仕事以外）',
     description: '使用ツール：CLIP STUDIO PAINT\n\nオリジナルキャラクターのデザイン\n漫画を描くために考えたものです。',
     images: [
-      { src: './assets/works/character-1.png', alt: 'オリジナルキャラクターの全身イラスト。青い髪ととがった耳、紺色のマントに白いブラウスとグレーのロングスカート' }
+      { src: './assets/works/character-1.jpg', alt: 'オリジナルキャラクターの全身イラスト。青い髪ととがった耳、紺色のマントに白いブラウスとグレーのロングスカート' }
     ],
     start: 0 // 最初に大きく出す画像（カードと同じもの）
   },
@@ -259,7 +259,7 @@ const projects = {
     images: [
       { src: './assets/works/camp-1.png', alt: 'キャンプ場の全体マップ' },
       { src: './assets/works/camp-2.png', alt: 'RVパークの区画を、木や車のイラストとあわせて描いた案内マップ' },
-      { src: './assets/works/camp-3.png', alt: 'キャンプ場周辺の道路と川を示した地図' }
+      { src: './assets/works/camp-3.jpg', alt: 'キャンプ場周辺の道路と川を示した地図' }
     ],
     start: 1, // 最初に大きく出す画像（カードと同じもの）
     link: { label: 'キャンプすがり2', url: 'https://camp-sugari.com/キャンプすがり2/' }

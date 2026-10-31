@@ -1418,3 +1418,15 @@ body.menu-open .to-top{display:none}
 /* 前は上下の真ん中にそろえていたので、1〜2行のコメントは書き出しが下がっていた。
    いちばん長いコメント（PCで3行）の書き出しの位置に、どのコメントも上からそろえる */
 .voice-slide{justify-content:flex-start}
+
+/* ===== プロフィール：経歴（CAREER）の短い年表 ===== */
+/* 左に年、右にできごと。行ごとに細い線で区切る。ラベルは下の CONTACT と同じ見た目 */
+.about-career{margin:28px 0}
+.about-copy p.about-career__label{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--deep)}
+.about-career__list{margin:0;border-top:1px solid var(--line)}
+.about-career__list>div{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.8}
+.about-career__list dt{font-weight:700;color:var(--deep);white-space:nowrap}
+.about-career__list dd{margin:0;color:var(--ink)}
+@media(max-width:650px){
+  .about-career__list>div{grid-template-columns:1fr;gap:0;font-size:13px}
+}
