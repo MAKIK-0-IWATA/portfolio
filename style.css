@@ -1348,3 +1348,9 @@ body.menu-open .to-top{display:none}
 
 /* ===== お客様の声：「お客様の声」は1枚ずつではなく、コメントの上の真ん中に1つだけ置く ===== */
 .voice-label{margin:0 0 20px;text-align:center;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+
+/* ===== お客様の声：「“」を左上から外し、「お客様の声」のすぐ下（真ん中）に置く。「お客様の声」は少し大きく ===== */
+/* 上から「お客様の声」→「“」→コメント の順に、真ん中の1本の線にそろえる */
+.voice::before{content:none}
+.voice-label{margin:0 0 4px;font-size:clamp(16px,1.4vw,18px);letter-spacing:.14em;color:var(--deep)}
+.voice-label::after{content:'“';display:block;margin-top:10px;font-family:Georgia,serif;font-size:clamp(56px,5vw,72px);font-weight:400;line-height:.7;letter-spacing:0;color:var(--mark-4);opacity:.85}
