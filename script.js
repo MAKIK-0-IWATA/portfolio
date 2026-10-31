@@ -62,7 +62,7 @@ const projects = {
     category: 'SNS / AI × MANGA',
     title: 'Instagram漫画',
     subtitle: 'EC業務の「なんで？」シリーズ',
-    description: 'EC実務ででてくる疑問を、1話12枚の漫画で解説するInstagram連載。テーマ選びと構成はAIと相談しながら組み立て、作画はAIで生成。仕上がりへの修正指示と、Figmaでの細かな修正・レイアウトは自分で行っています。',
+    description: 'EC実務ででてくる疑問を、1話12枚の漫画で解説するInstagram連載。AIと相談しながら、テーマ選び・構成・レイアウト・作画などを行い、細かな修正を人間がやる形で制作しています。',
     image: './assets/insta-manga-02.jpg', alt: 'Instagram漫画「EC業務の『なんで？』」第2話・送料表示編の表紙。「送料を書いていないだけで、10人に4人が離脱する？」という見出しと、パソコンの前で考え込む女性のイラスト',
     fit: 'contain' // 縦長の表紙を切らずに見せる
   },
