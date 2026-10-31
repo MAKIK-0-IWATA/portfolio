@@ -1383,3 +1383,25 @@ body.menu-open .to-top{display:none}
 /* 日本語を外して英字1つだけになったので、日本語用の「最後の文字（:last-child）＝小さく」が英字に当たらないよう、英字の大きさを指定し直す */
 .voice-label span:only-child{font-size:clamp(30px,4.6vw,64px);letter-spacing:.08em}
 @media(max-width:650px){.voice-label span:only-child{font-size:clamp(20px,7vw,30px);letter-spacing:.04em}}
+
+/* ===== お客様の声：「CUSTOMER VOICE」を台紙いっぱいの大きな文字にして、上のふちで切る（ポスターのように、はみ出させる） =====
+   色は台紙とほぼ同じ。そこに見出しと同じ「深緑→黄緑→深緑」のグラデーションの帯がすーっと通り、
+   通った所だけ文字の輪郭が浮かんで読める（文字の形で背景を切り抜く background-clip:text） */
+.voice{overflow:hidden;padding-top:0}
+.voice-label{container-type:inline-size;margin-bottom:clamp(8px,1.6vw,20px)}
+.voice-label span:only-child{
+  display:block;width:100%;text-align:center;white-space:nowrap;
+  font-size:12.4cqw;font-weight:800;line-height:1;letter-spacing:-.01em;
+  /* 上を約3割、台紙の外へ出して切る */
+  margin-top:-.3em;
+  --voice-base:color-mix(in srgb,var(--sage) 92%,var(--deep) 8%);
+  background:linear-gradient(90deg,var(--voice-base) 0%,var(--voice-base) 30%,color-mix(in srgb,#6E9A3C 55%,var(--sage)) 42%,color-mix(in srgb,var(--deep) 45%,var(--sage)) 50%,color-mix(in srgb,#6E9A3C 55%,var(--sage)) 58%,var(--voice-base) 70%,var(--voice-base) 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+  animation:mera-slide 9s linear infinite;
+}
+@media(max-width:650px){.voice-label span:only-child{font-size:12.4cqw;letter-spacing:-.01em}}
+@media (prefers-reduced-motion:reduce){.voice-label span:only-child{animation:none;background-position:-50% 50%}}
+/* 12.4cqw だと台紙より約3割広かったので、左右ぴったり（少し内側）に収まる大きさに */
+.voice-label span:only-child{font-size:9.2cqw}
+@media(max-width:650px){.voice-label span:only-child{font-size:9.2cqw}}
