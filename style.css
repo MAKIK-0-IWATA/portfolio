@@ -1410,3 +1410,6 @@ body.menu-open .to-top{display:none}
 /* 文字が大きいぶん、もっとおとなしく：いちばん濃い所（帯の真ん中）を「前のふだんの色」（台紙＋深緑8%）くらいにし、
    ふだんの色は台紙＋深緑3%まで薄くする。帯が通った所だけ、うっすら輪郭がわかる */
 .voice-label span:only-child{--voice-base:color-mix(in srgb,var(--sage) 97%,var(--deep) 3%);background-image:linear-gradient(90deg,var(--voice-base) 0%,var(--voice-base) 30%,color-mix(in srgb,#6E9A3C 9%,var(--sage)) 42%,color-mix(in srgb,var(--deep) 8%,var(--sage)) 50%,color-mix(in srgb,#6E9A3C 9%,var(--sage)) 58%,var(--voice-base) 70%,var(--voice-base) 100%)}
+/* 黄緑はやめ、同じ緑みのグレー1色の濃淡だけにする（ふだん：台紙＋深緑3% → 帯の真ん中：台紙＋深緑9%）。
+   色が変わると文字より色に目がいくので、「今の色が少し濃くなる」だけの淡白な帯にする */
+.voice-label span:only-child{background-image:linear-gradient(90deg,var(--voice-base) 0%,var(--voice-base) 30%,color-mix(in srgb,var(--deep) 6%,var(--sage)) 42%,color-mix(in srgb,var(--deep) 9%,var(--sage)) 50%,color-mix(in srgb,var(--deep) 6%,var(--sage)) 58%,var(--voice-base) 70%,var(--voice-base) 100%)}
