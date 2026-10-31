@@ -1405,3 +1405,5 @@ body.menu-open .to-top{display:none}
 /* 12.4cqw だと台紙より約3割広かったので、左右ぴったり（少し内側）に収まる大きさに */
 .voice-label span:only-child{font-size:9.2cqw}
 @media(max-width:650px){.voice-label span:only-child{font-size:9.2cqw}}
+/* グラデーションの帯が濃くて目を引きすぎたので、約半分の濃さに（黄緑 55%→25%、深緑 45%→22%） */
+.voice-label span:only-child{background-image:linear-gradient(90deg,var(--voice-base) 0%,var(--voice-base) 30%,color-mix(in srgb,#6E9A3C 25%,var(--sage)) 42%,color-mix(in srgb,var(--deep) 22%,var(--sage)) 50%,color-mix(in srgb,#6E9A3C 25%,var(--sage)) 58%,var(--voice-base) 70%,var(--voice-base) 100%)}
