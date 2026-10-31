@@ -1285,3 +1285,8 @@ body.menu-open .to-top{display:none}
   .works-grid .work-meta{container-type:inline-size}
   .works-grid .work-meta h3 .work-meta__sub{font-size:min(11px,calc(100cqw / 14.6))}
 }
+
+/* ===== モーダルの小さな画像：枚数が多い作品（Instagram漫画の12枚など）は、つぶさずに横へスクロール ===== */
+/* 前は台紙の幅に収めようとして小さな画像が細くつぶれていた。大きさは固定し、はみ出した分は指・ホイールで横に送る */
+.dialog-thumbs{justify-content:safe center;overflow-x:auto;padding:2px 16px;scrollbar-width:thin;overscroll-behavior-x:contain}
+.dialog-thumbs button{flex:none}

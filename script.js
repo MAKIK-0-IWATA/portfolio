@@ -63,8 +63,24 @@ const projects = {
     title: 'Instagram漫画',
     subtitle: 'EC業務の「なんで？」シリーズ',
     description: 'EC実務ででてくる疑問を、1話12枚の漫画で解説するInstagram連載。AIと相談しながら、テーマ選び・構成・レイアウト・作画などを行い、細かな修正を人間がやる形で制作しています。',
-    image: './assets/insta-manga-02.jpg', alt: 'Instagram漫画「EC業務の『なんで？』」第2話・送料表示編の表紙。「送料を書いていないだけで、10人に4人が離脱する？」という見出しと、パソコンの前で考え込む女性のイラスト',
-    fit: 'contain' // 縦長の表紙を切らずに見せる
+    // 第2話・送料表示編の12枚（Instagramの投稿と同じ順）
+    images: [
+      { src: './assets/works/manga02-01.jpg', alt: 'Instagram漫画「EC業務の『なんで？』」第2話・送料表示編の表紙。「送料を書いていないだけで、10人に4人が離脱する？」という見出しと、パソコンの前で考え込む女性のイラスト' },
+      { src: './assets/works/manga02-02.jpg', alt: 'Instagram漫画 第2話・送料表示編 2枚目：「送料どこ？」' },
+      { src: './assets/works/manga02-03.jpg', alt: 'Instagram漫画 第2話・送料表示編 3枚目：「決済まで進めば分かる」' },
+      { src: './assets/works/manga02-04.jpg', alt: 'Instagram漫画 第2話・送料表示編 4枚目：ユーザー側から見ると' },
+      { src: './assets/works/manga02-05.jpg', alt: 'Instagram漫画 第2話・送料表示編 5枚目：「え、4割？」' },
+      { src: './assets/works/manga02-06.jpg', alt: 'Instagram漫画 第2話・送料表示編 6枚目：4割の正体' },
+      { src: './assets/works/manga02-07.jpg', alt: 'Instagram漫画 第2話・送料表示編 7枚目：表示は関係ない？' },
+      { src: './assets/works/manga02-08.jpg', alt: 'Instagram漫画 第2話・送料表示編 8枚目：結局いくらかかるの？' },
+      { src: './assets/works/manga02-09.jpg', alt: 'Instagram漫画 第2話・送料表示編 9枚目：保存用の数字まとめ' },
+      { src: './assets/works/manga02-10.jpg', alt: 'Instagram漫画 第2話・送料表示編 10枚目：でも送料が変わる' },
+      { src: './assets/works/manga02-11.jpg', alt: 'Instagram漫画 第2話・送料表示編 11枚目：書けないと何も書かない' },
+      { src: './assets/works/manga02-12.jpg', alt: 'Instagram漫画 第2話・送料表示編 12枚目：まとめとフォローのお願い' }
+    ],
+    start: 0,
+    fit: 'contain', // 縦長の漫画を切らずに見せる
+    link: { label: 'Instagramで投稿を見る', url: 'https://www.instagram.com/p/DeE2MLAFA1g/' }
   },
   analysis: {
     category: 'MARKETING / ANALYSIS',
