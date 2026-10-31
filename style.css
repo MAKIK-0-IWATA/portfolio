@@ -1345,3 +1345,6 @@ body.menu-open .to-top{display:none}
 .voice-track{overflow:hidden;scroll-snap-type:none}
 .voice-slide{transition:transform .6s cubic-bezier(.2,.7,.1,1)}
 @media (prefers-reduced-motion:reduce){.voice-slide{transition:none}}
+
+/* ===== お客様の声：「お客様の声」は1枚ずつではなく、コメントの上の真ん中に1つだけ置く ===== */
+.voice-label{margin:0 0 20px;text-align:center;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
