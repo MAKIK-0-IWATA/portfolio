@@ -5,6 +5,7 @@
 // position：モーダルで画像を枠いっぱいに広げた時、見せたい位置（省略すると中央）。
 // fit：'contain' にすると切らずに全体を収め、余白を白にする（省略すると枠いっぱい）。
 // images：画像が複数ある作品。モーダルの画像の下に小さな画像が並び、押すと切り替わる。start は最初に出す画像の番号（0から）。
+// subtitle：作品名の下に小さく添える2行目（カードの見出しと同じ書き方にそろえる）。
 // link：お客様のサイトなど。モーダルの本文の下にリンクとして出す。
 // 元サイト（growl-lalala-design.com/works）の14件は、本文を元サイトから原文のまま転記している（\n は改行）。
 const projects = {
@@ -59,7 +60,8 @@ const projects = {
   },
   manga: {
     category: 'SNS / AI × MANGA',
-    title: 'EC業務の「なんで？」Instagram漫画',
+    title: 'Instagram漫画',
+    subtitle: 'EC業務の「なんで？」シリーズ',
     description: 'EC実務ででてくる疑問を、1話12枚の漫画で解説するInstagram連載。テーマ選びと構成はAIと相談しながら組み立て、作画はAIで生成。仕上がりへの修正指示と、Figmaでの細かな修正・レイアウトは自分で行っています。',
     image: './assets/insta-manga-02.jpg', alt: 'Instagram漫画「EC業務の『なんで？』」第2話・送料表示編の表紙。「送料を書いていないだけで、10人に4人が離脱する？」という見出しと、パソコンの前で考え込む女性のイラスト',
     fit: 'contain' // 縦長の表紙を切らずに見せる
@@ -356,6 +358,12 @@ document.querySelectorAll('[data-project]').forEach(button => {
     if (!data) return;
     document.querySelector('#dialog-category').textContent = data.category;
     document.querySelector('#dialog-title').textContent = data.title;
+    if (data.subtitle) {
+      const sub = document.createElement('span');
+      sub.className = 'dialog-title__sub';
+      sub.textContent = data.subtitle;
+      document.querySelector('#dialog-title').append(sub);
+    }
     const description = document.querySelector('#dialog-description');
     description.textContent = data.description;
     description.hidden = !data.description; // 本文がない作品（ゴルフスクールLP）は空の段落を出さない

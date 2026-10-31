@@ -1274,3 +1274,14 @@ body.menu-open .to-top{display:none}
 
 /* ===== オープニングの屋号：全部大文字（GROWL LALALA DESIGN）をやめ、正式な書き方「Growl LaLaLa Design」のまま出す ===== */
 .opening__sub{text-transform:none}
+
+/* ===== 作品名の2行目（例：Instagram漫画 ／ EC業務の「なんで？」シリーズ）：少し小さく、1行に収める ===== */
+.works-grid .work-meta h3 .work-meta__sub{display:block;font-size:.8em;font-weight:500;letter-spacing:0;white-space:nowrap}
+@media(max-width:650px){.works-grid .work-meta h3 .work-meta__sub{font-size:11px}}
+.dialog-title__sub{display:block;margin-top:4px;font-size:.6em;letter-spacing:0}
+/* スマホ（2列）はカードが細く、11pxだと1行に入りきらない。カードの幅に合わせて文字を小さくする（最大11px）
+   見出しの箱そのものを「ものさし」にし（container-type）、2行目の約14.3文字分がちょうど収まる大きさにする */
+@media(max-width:650px){
+  .works-grid .work-meta{container-type:inline-size}
+  .works-grid .work-meta h3 .work-meta__sub{font-size:min(11px,calc(100cqw / 14.6))}
+}
