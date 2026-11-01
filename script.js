@@ -381,7 +381,26 @@ document.querySelectorAll('[data-project]').forEach(button => {
       document.querySelector('#dialog-title').append(sub);
     }
     const description = document.querySelector('#dialog-description');
-    description.textContent = data.description;
+    // 本文を1行ずつ見て、「業種」「ご希望の内容」などの項目名だけ目立つ部品にする（ほかはそのまま文字で入れる）
+    description.textContent = '';
+    (data.description || '').split('\n').forEach((line, i) => {
+      if (i > 0) description.append('\n');
+      const label = (text, cls) => {
+        const span = document.createElement('span');
+        span.className = cls;
+        span.textContent = text;
+        description.append(span);
+      };
+      // 見出しだけの行：ご希望の内容／制作のポイント／表現したい内容
+      if (/^(ご希望の内容|制作のポイント|表現したい内容)$/.test(line)) return label(line, 'desc-head');
+      // 「業種「〇〇」」の形：項目名をラベルにして、カギカッコは外す
+      let m = line.match(/^(業種|ターゲット|ショップコンセプト|目的)「(.*?)」(.*)$/);
+      if (m) { label(m[1], 'desc-label'); description.append(m[2] + m[3]); return; }
+      // 「使用ソフト：〇〇」の形
+      m = line.match(/^(クライアント|制作物|使用ソフト|使用ツール)：(.*)$/);
+      if (m) { label(m[1], 'desc-label'); description.append(m[2]); return; }
+      description.append(line);
+    });
     description.hidden = !data.description; // 本文がない作品（ゴルフスクールLP）は空の段落を出さない
     // 画像：images があればそれを、なければ1枚だけの image を使う
     const images = data.images || [{ src: data.image, alt: data.alt }];
