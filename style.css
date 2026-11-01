@@ -1467,3 +1467,5 @@ body.menu-open .to-top{display:none}
 /* ロゴは文字と同じくらいの高さ（1.15em）。文字の真ん中に高さをそろえる */
 .ability-extra .ai-tool{display:inline-flex;align-items:center;gap:.45em}
 .ability-extra .ai-tool__logo{flex:none;width:1.15em;height:1.15em}
+/* ロゴの色は、ブランド色ではなく文字と同じ深緑にそろえる（SVG は fill="currentColor"） */
+.ability-extra .ai-tool__logo{color:var(--deep)}
