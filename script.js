@@ -12,7 +12,7 @@ const projects = {
   seminar: {
     category: 'WEB DESIGN / LP',
     title: 'オンラインセミナーのLP制作',
-    description: '業種「オンラインセミナー運営」\nターゲット「40代前後　男性女性。割合は30対70。WEBデザインに興味がある人。あるいは、在宅で働ける仕事を探している人」\nご希望の内容\n・希望の配色イメージ：特に無し\n・希望イメージ：明るい印象で、信頼感があること。\n・サイズはスマホサイズ\n\n制作のポイント\nFVでユーザーがイメージしやすいよう、勉強している姿や未来の姿をイメージできるような写真を使用し、ユーザー目線で疑問点やメリットなどを説明していく。\nカウントダウン式のCTAボタンはFV直下に設置',
+    description: '業種「オンラインセミナー運営」\nターゲット「40代前後の男女（男性3：女性7）。Webデザインに興味がある人、在宅でできる仕事を探している人」\nご希望の内容\n・配色：指定なし\n・印象：明るく、信頼感があること\n・サイズ：スマホ\n\n制作のポイント\n・ファーストビュー（最初に見える部分）には、勉強している姿や数か月後の自分を思い描けるような写真を使いました。そのあと、ユーザーが抱きそうな疑問やメリットを、順番に答える流れで説明しています。\n・申し込みボタンには残り時間のカウントダウンを付けて、ファーストビューのすぐ下に置きました。',
     images: [
       { src: './assets/works/seminar-1.jpg', alt: 'オンラインセミナー「ゼロから始めるWEBデザイン 5日間チャレンジプログラム」のLP' },
       { src: './assets/works/seminar-2.jpg', alt: 'LPのファーストビューをスマートフォンに表示したイメージ' },
@@ -26,7 +26,7 @@ const projects = {
   insole: {
     category: 'WEB DESIGN / LP',
     title: '医療品（インソール）のLP制作',
-    description: '業種「医療品販売」\nターゲット「老若男女」\nご希望の内容\n・O脚・X脚・猫背・外反母趾などで悩んでいる人向け\n・上質な本革で匠の職人の手で一つ一つ丹念に作成している高級インソール\n・医療機関にも採用され、特許取得もしているので、権威性や信頼感を出したい\n\n制作のポイント\nFVで権威性を示し、親しみやすい雰囲気のイラストを使用してユーザー目線に近いところから内容を説明していく。\nインソールとしては、価格設定が高いため、購入ボタンやデザインに高級感をもたせたデザインで制作。',
+    description: '業種「医療品販売」\nターゲット「O脚・X脚・猫背・外反母趾などで悩んでいる幅広い年代の男女」\nご希望の内容\n・職人が上質な本革で一つずつ手作りしている、高級インソールであることを伝えたい\n・医療機関での採用や特許取得の実績から、信頼感を出したい\n\n制作のポイント\n・ファーストビューで「医療機関で採用」「特許取得」の実績を見せて、最初に信頼してもらえるようにしました。そのあとは親しみやすいイラストを使い、悩んでいる人の目線に近いところから説明しています。\n・インソールとしては価格が高めなので、購入ボタンや全体の雰囲気に高級感を持たせました。',
     images: [
       { src: './assets/works/insole-1.jpg', alt: 'インソールのLPをノートパソコンとスマートフォンに表示したイメージ' },
       { src: './assets/works/insole-2.jpg', alt: 'LPのファーストビューをスマートフォンに表示したイメージ' },
@@ -383,7 +383,9 @@ document.querySelectorAll('[data-project]').forEach(button => {
     const description = document.querySelector('#dialog-description');
     // 本文を1行ずつ見て、「業種」「ご希望の内容」などの項目名だけ目立つ部品にする（ほかはそのまま文字で入れる）
     description.textContent = '';
-    (data.description || '').split('\n').forEach((line, i) => {
+    // 小見出しの前の空行は消す（空行がある見出し・ない見出しで間隔がばらつくので、間隔はCSSの余白でそろえる）
+    const heads = /^(ご希望の内容|制作のポイント|表現したい内容)$/;
+    (data.description || '').split('\n').filter((line, i, lines) => !(line === '' && heads.test(lines[i + 1] || ''))).forEach((line, i) => {
       if (i > 0) description.append('\n');
       const label = (text, cls) => {
         const span = document.createElement('span');
@@ -392,7 +394,7 @@ document.querySelectorAll('[data-project]').forEach(button => {
         description.append(span);
       };
       // 見出しだけの行：ご希望の内容／制作のポイント／表現したい内容
-      if (/^(ご希望の内容|制作のポイント|表現したい内容)$/.test(line)) return label(line, 'desc-head');
+      if (heads.test(line)) return label(line, 'desc-head');
       // 「業種「〇〇」」の形：項目名をラベルにして、カギカッコは外す
       let m = line.match(/^(業種|ターゲット|ショップコンセプト|目的)「(.*?)」(.*)$/);
       if (m) { label(m[1], 'desc-label'); description.append(m[2] + m[3]); return; }
