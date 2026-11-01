@@ -155,13 +155,22 @@ const projects = {
   webseminarbanner: {
     category: 'WEB DESIGN / BANNER',
     title: 'Webデザイン講座の集客バナー制作',
-    description: '業種「オンラインセミナー運営（副業Webデザイン講座）」\nターゲット「20〜60代前後の男女」\n制作物「『5日間チャレンジプログラム』の集客バナー（用途別に3種類）」\n\n制作のポイント\n・サイズ違い3パターン（960×1200／300×600／160×600）：必要な情報だけでシンプルに構成しました。講師の言葉が強めで、受け取る人によって印象が大きく変わりそうだったため、人物は表情が読み取りにくいイラストにしました。\n・Facebook・Instagram広告用（1080×1080）：最初に出したラフ3種のうち漫画風の案を気に入っていただき、さらに3パターンを提案しました。最終的に一番左のバナーが採用されました。\n・YouTube・Google広告用（1200×628／728×90）：「デザイナー」と聞いて多くの人が思い浮かべるイメージに近づけました。',
+    description: '業種「オンラインセミナー運営（副業Webデザイン講座）」\nターゲット「20〜60代前後の男女」\n制作物「『5日間チャレンジプログラム』の集客バナー（用途別に2種類）」\n\n制作のポイント\n・サイズ違い3パターン（960×1200／300×600／160×600）：必要な情報だけでシンプルに構成しました。講師の言葉が強めで、受け取る人によって印象が大きく変わりそうだったため、人物は表情が読み取りにくいイラストにしました。\n・YouTube・Google広告用（1200×628／728×90）：「デザイナー」と聞いて多くの人が思い浮かべるイメージに近づけました。',
     images: [
       { src: './assets/works/webseminar-banner-1.jpg', alt: 'イラストを使ったサイズ違い3パターンのバナー。「副業Webデザイン 5日間チャレンジプログラム」の文字' },
-      { src: './assets/works/webseminar-banner-2.jpg', alt: '漫画のイラストを使ったSNS広告用バナー3パターン。「福岡県在住の方へ朗報 新しい働き方を手に入れる」の文字' },
       { src: './assets/works/webseminar-banner-3.jpg', alt: '人物写真を並べた広告用バナー2サイズ。「副業Webデザイン 5日間チャレンジプログラム」の文字' }
     ],
     start: 0 // 最初に大きく出す画像（カードと同じもの）
+  },
+  instabanner: {
+    category: 'WEB DESIGN / SNS BANNER',
+    title: 'Webデザイン講座のInstagram広告バナー制作',
+    description: '業種「オンラインセミナー運営（副業Webデザイン講座）」\nターゲット「20〜60代前後の男女」\n制作物「Facebook・Instagram広告用のバナー（1080×1080）」\n\n制作のポイント\n・最初に雰囲気の違うラフを3種類お出しし、漫画風の案を気に入っていただきました。\n・漫画風で、さらに3パターンを作って提案しました。最終的に一番左のバナーが採用されました。',
+    images: [
+      { src: './assets/works/insta-banner-1.jpg', alt: '採用されたバナー。漫画の女性のイラストと「福岡県在住の方へ朗報 新しい働き方を手に入れる WEBデザイン5日間チャレンジの参加者を募集しています」の文字' },
+      { src: './assets/works/webseminar-banner-2.jpg', alt: '提案した漫画風バナー3パターン。左が採用されたもの' }
+    ],
+    start: 0 // 最初に大きく出す画像（カードと同じ、採用された1枚）
   },
   icebanner: {
     category: 'WEB DESIGN / BANNER',
@@ -293,7 +302,7 @@ const applyFilter = () => {
   const limit = isPhone.matches ? 8 : 9;
   let visible = 0;
   cards.forEach(card => {
-    const match = currentFilter === 'all' || card.dataset.category === currentFilter;
+    const match = currentFilter === 'all' || card.dataset.category.split(' ').includes(currentFilter);
     if (match) visible++;
     const show = match && (expanded || visible <= limit);
     card.classList.toggle('is-hidden', !show);
@@ -326,7 +335,7 @@ filters.forEach(button => {
 });
 moreButton?.addEventListener('click', () => {
   // 開いた時、新しく出た最初の作品に読み上げ・キーボードの位置を移す
-  const firstHidden = [...cards].find(card => card.hidden && (currentFilter === 'all' || card.dataset.category === currentFilter));
+  const firstHidden = [...cards].find(card => card.hidden && (currentFilter === 'all' || card.dataset.category.split(' ').includes(currentFilter)));
   expanded = true;
   applyFilter();
   firstHidden?.querySelector('.work-card__action')?.focus({ preventScroll: true });
