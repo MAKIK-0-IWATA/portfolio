@@ -134,7 +134,7 @@ const projects = {
   meishi: {
     category: 'GRAPHIC / BUSINESS CARD',
     title: '名刺制作',
-    description: '制作物「名刺（ヘアサロン Mirror／オンライン英会話スクール／自社）」\n\n制作のポイント\n・Mirror：銀色の面にロゴマークだけを置き、もう一方の面に地図と店舗情報をまとめました。\n・英会話スクール：縦型と横型の2種類を作りました。\n・自社：パイナップル柄と犬のシルエットで、レトロ・南国・優しいイメージにしました。',
+    description: '制作物「名刺（ヘアサロン Mirror／自社／オンライン英会話スクール）」\n\n制作のポイント\n・Mirror：銀色の面にロゴマークだけを置き、もう一方の面に地図と店舗情報をまとめました。\n・自社：パイナップル柄と犬のシルエットで、レトロ・南国・優しいイメージにしました。\n・英会話スクール：縦型と横型の2種類を作りました。',
     images: [
       { src: './assets/works/meishi-1.jpg', alt: 'ヘアサロン「Mirror」の名刺。銀色の面にMのロゴマーク、白い面に地図と店舗情報' },
       { src: './assets/works/meishi-2.jpg', alt: 'Growl LaLaLa Design の名刺。パイナップル柄の面と、ロゴと犬のシルエットが入った面' },
