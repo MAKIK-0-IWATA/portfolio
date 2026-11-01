@@ -165,7 +165,7 @@ const projects = {
   },
   instabanner: {
     category: 'WEB DESIGN / SNS BANNER',
-    title: 'Webデザイン講座のInstagram広告バナー制作',
+    title: 'Instagram広告バナー制作',
     description: '業種「オンラインセミナー運営（副業Webデザイン講座）」\nターゲット「20〜60代前後の男女」\n制作物「Facebook・Instagram広告用のバナー（1080×1080）」\n\n制作のポイント\n・最初に雰囲気の違うラフを3種類お出しし、漫画風の案を気に入っていただきました。\n・漫画風で、さらに3パターンを作って提案しました。最終的に一番左のバナーが採用されました。',
     images: [
       { src: './assets/works/insta-banner-1.jpg', alt: '採用されたバナー。漫画の女性のイラストと「福岡県在住の方へ朗報 新しい働き方を手に入れる WEBデザイン5日間チャレンジの参加者を募集しています」の文字' },
