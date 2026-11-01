@@ -1439,3 +1439,5 @@ body.menu-open .to-top{display:none}
    「業種」「ターゲット」などは薄いグリーンの小さなラベル、「ご希望の内容」「制作のポイント」は深緑の太字の小見出しにする */
 .dialog-copy>p#dialog-description .desc-label{display:inline-block;margin-right:.7em;padding:0 .7em;border-radius:3px;background:var(--sage);color:var(--deep);font-size:.86em;font-weight:700;line-height:1.9;letter-spacing:.06em}
 .dialog-copy>p#dialog-description .desc-head{display:inline-block;margin-top:1.4em;padding-left:.7em;border-left:3px solid var(--fill);color:var(--deep);font-weight:700;line-height:1.5;letter-spacing:.06em}
+/* 「※」で始まる注意書き：本文より小さく、灰色で */
+.dialog-copy>p#dialog-description .desc-note{font-size:.9em;color:var(--muted)}

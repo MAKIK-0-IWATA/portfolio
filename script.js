@@ -273,15 +273,15 @@ const projects = {
   ownsite: {
     category: 'GRAPHIC / BRANDING',
     title: '自社のサイト・ロゴ制作',
-    description: '制作物「自社サイト、ロゴ」\n使用ツール「Studio」\n目的「自分のポートフォリオを見てもらい、仕事の依頼につなげたい」\n\n表現したい内容\n・イメージ：レトロ、南国、美味しそうな、優しい\n・お客様目線でサービス内容を紹介したい\n\n制作のポイント\n・WordPressでも作ってみましたが、Studioも試してみたくて、今回はStudioで制作しました。\n・トップページだけで大体の情報がわかるようにし、問い合わせフォームまで置きました。\n・料金表やサービス内容は別ページで詳しく書き、初めての方でも依頼しやすいようにしました。',
+    description: '※ 最初に制作した自社サイトです（現在のこのサイトとは別のものです）。\n\n制作物「自社サイト、ロゴ」\n使用ツール「Studio」\n目的「自分のポートフォリオを見てもらい、仕事の依頼につなげたい」\n\n表現したい内容\n・イメージ：レトロ、南国、美味しそうな、優しい\n・お客様目線でサービス内容を紹介したい\n\n制作のポイント\n・WordPressでも作ってみましたが、Studioも試してみたくて、今回はStudioで制作しました。\n・トップページだけで大体の情報がわかるようにし、問い合わせフォームまで置きました。\n・料金表やサービス内容は別ページで詳しく書き、初めての方でも依頼しやすいようにしました。',
     images: [
       { src: './assets/works/ownsite-1.png', alt: 'Growl LaLaLa Design のロゴ' },
       { src: './assets/works/ownsite-2.png', alt: '4枚の葉を組み合わせたロゴマーク' },
       { src: './assets/works/ownsite-3.jpg', alt: 'ロゴを入れた名刺' },
       { src: './assets/works/ownsite-4.jpg', alt: '自社サイトのスマートフォン版とPC版を、上から順に並べた全体像' }
     ],
-    start: 0, // 最初に大きく出す画像（カードと同じもの）
-    link: { label: 'Growl LaLaLa Design', url: 'https://growl-lalala-design.com/' }
+    start: 0 // 最初に大きく出す画像（カードと同じもの）
+    // リンクは外した（今のURLは作り直したこのサイトになっていて、説明している最初のサイトとは別物のため）
   }
 };
 
@@ -391,6 +391,8 @@ document.querySelectorAll('[data-project]').forEach(button => {
         description.append(span);
       };
       // 見出しだけの行：ご希望の内容／制作のポイント／表現したい内容
+      // 「※」で始まる行は注意書き（小さめ・灰色）
+      if (line.startsWith('※')) return label(line, 'desc-note');
       if (heads.test(line)) return label(line, 'desc-head');
       // 「業種「〇〇」」の形：項目名をラベルにして、カギカッコは外す
       const m = line.match(/^(業種|コンセプト|ターゲット|制作物|使用ツール|目的)「(.*?)」(.*)$/);
