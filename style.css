@@ -1441,3 +1441,14 @@ body.menu-open .to-top{display:none}
 .dialog-copy>p#dialog-description .desc-head{display:inline-block;margin-top:1.4em;padding-left:.7em;border-left:3px solid var(--fill);color:var(--deep);font-weight:700;line-height:1.5;letter-spacing:.06em}
 /* 「※」で始まる注意書き：本文より小さく、灰色で */
 .dialog-copy>p#dialog-description .desc-note{font-size:.9em;color:var(--muted)}
+
+/* ===== できること：1枚目（黄緑）だけ、流れるグラデーションを濃く ===== */
+/* 黄緑はページの背景の色と近く、ほかの3枚と同じ10%だとほとんど見えないので、22%にする（ホバー時も同じ濃さに合わせる） */
+.ability-card:nth-child(1){
+  background-image:linear-gradient(90deg,
+    color-mix(in srgb,var(--leaf) 22%,transparent) 0%,
+    transparent 35%,
+    transparent 65%,
+    color-mix(in srgb,var(--leaf) 22%,transparent) 100%);
+}
+.ability-card:nth-child(1):hover{background-color:color-mix(in srgb,var(--leaf) 22%,transparent)}
