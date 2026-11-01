@@ -1462,3 +1462,8 @@ body.menu-open .to-top{display:none}
   .ability-extra .tool-line{font-size:13px}
   .ability-extra .license-line{font-size:15px}
 }
+
+/* ===== できること：AIの行に、各サービスのロゴを文字の左に並べる ===== */
+/* ロゴは文字と同じくらいの高さ（1.15em）。文字の真ん中に高さをそろえる */
+.ability-extra .ai-tool{display:inline-flex;align-items:center;gap:.45em}
+.ability-extra .ai-tool__logo{flex:none;width:1.15em;height:1.15em}
