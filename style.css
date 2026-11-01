@@ -1452,3 +1452,13 @@ body.menu-open .to-top{display:none}
     color-mix(in srgb,var(--leaf) 22%,transparent) 100%);
 }
 .ability-card:nth-child(1):hover{background-color:color-mix(in srgb,var(--leaf) 22%,transparent)}
+
+/* ===== できること：下の AI・LICENSE の行の文字を大きく ===== */
+/* 上のカードの「つくるもの」（17px）に比べて小さすぎたので、AIのツール名 11→14px、資格 14→16px、左のラベル 12→13px に。スマホは1px小さく */
+.ability-extra dt{font-size:13px}
+.ability-extra .tool-line{font-size:14px}
+.ability-extra .license-line{font-size:16px;line-height:1.7}
+@media(max-width:650px){
+  .ability-extra .tool-line{font-size:13px}
+  .ability-extra .license-line{font-size:15px}
+}
